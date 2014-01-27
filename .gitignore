@@ -1,0 +1,6 @@
+build*
+dist
+manifest.mf
+nbproject
+*.swp
+*.swo
