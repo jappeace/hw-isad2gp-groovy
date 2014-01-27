@@ -18,32 +18,16 @@
 package nl.jappieklooster.ISAD2.maze
 
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
-import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
+
 /**
  *
  * @author jappie
  */
 class MazeFactory {
-	Collection<Square> createMaze(int width, int height){
+	CheckBoard base
+	Collection<Square> createMaze(){
 		
 	}
-	private DisjointSets createCheckerBoard(int width, int height){
-		int product = width*height
-		if(product < 0){
-			throw new Exception("Expecting positive integers to create checkboard")
-		}
-		DisjointSets result = new DisjointSets(setnodes:new ISetNode[product])
-		
-		// fil in the squares
-		0..product.each{ i ->
-			result.setnodes[i] = new Square()
-		}
-		
-		// bind the edges
-		0..product.each{ i ->
-			
-		}
-		
-	}
+
 }
 
