@@ -24,10 +24,11 @@ import nl.jappieklooster.ISAD2.disjointsets.AbstractSetNode
  * @author jappie
  */
 class Square extends AbstractSetNode{
-	Edge left
-	Edge top
-	Edge right
-	Edge bottom
+	Square left
+	Square top
+	Square right
+	Square bottom
+	
 	Square(){
 		super()
 	}

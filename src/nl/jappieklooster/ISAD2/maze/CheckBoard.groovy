@@ -43,25 +43,6 @@ class CheckBoard extends DisjointSets {
 		// fil in the squares
 		0..product.each{ i ->
 			setnodes[i] = new Square()
-		}
-		
-		// bind the edges
-		0..height.each{ h ->
-			0..width.each{ w ->
-				Square square = getSquareAt(w, h)
-				if(w != 0){
-					square.left   = new Edge(square, getSquareAt(w-1, h))
-				}
-				if(w != width){
-					square.right  = new Edge(square, getSquareAt(w+1, h))
-				}
-				if(h != 0){
-					square.top    = new Edge(square, getSquareAt(w, h-1))
-				}
-				if(h != height){
-					square.bottem = new Edge(square, getSquareAt(w, h+1))
-				}
-			}
 		}	
 	}
 	/**
