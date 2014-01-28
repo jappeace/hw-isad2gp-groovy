@@ -40,7 +40,7 @@ class SquareGrid extends DisjointSets {
 		if(product < 0){
 			throw new Exception("Expecting positive integers to create checkboard")
 		}
-		setnodes = new ISetNode[product]
+		setnodes = new ISetNode[product+1]
 		
 		// fil in the squares
 		0..product.each{ i ->
