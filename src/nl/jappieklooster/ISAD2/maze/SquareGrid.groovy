@@ -70,9 +70,15 @@ class SquareGrid extends DisjointSets {
 	* indexcies are always ints in a array
 	*/
 	Square getSquareAt(double x, double y){
-		return getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
+		getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
 	}
 	
+	/**
+	 * overload cause lazy
+	 */
+	Square getSquareAt(Point p){
+		getSquareAt(p.x, p.y)
+	}
 	/**
 	 * an easier interface on top of the primitive find
 	 */

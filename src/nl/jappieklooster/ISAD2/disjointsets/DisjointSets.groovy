@@ -36,7 +36,7 @@ class DisjointSets implements IDisjointSets{
 		}
 	}
 	
-	Set<ISetNode> union(ISetNode one, ISetNode two){
+	void union(ISetNode one, ISetNode two){
 		if(!isRoot(one)){
 			one = find(one)
 		}

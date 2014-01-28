@@ -17,7 +17,9 @@
 
 package nl.jappieklooster.ISAD2.maze
 
+import java.awt.Point
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
+import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 
 /**
  *
@@ -25,7 +27,7 @@ import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
  */
 class MazeFactory {
 	SquareGrid base
-	
+	private Random random = new Random()
 	// a bunch of constuctors, because lazy
 	MazeFactory(){
 		this(new SquareGrid())
@@ -38,6 +40,55 @@ class MazeFactory {
 	}
 
 	SquareGrid createMaze(){
+		
+		Point one = new Point(
+			random.nextInt((Integer)base.size.width), 
+			random.nextInt((Integer)base.size.height)
+		)
+		Point two = new Point(one)
+		int nextRand = random.nextInt(4)
+		
+
+		Square modified
+		if		(nextRand == 0){
+			
+			two.x -= 1
+			
+		}else if(nextRand == 1){
+			
+			two.x += 1
+			
+		}else if(nextRand == 2){
+			
+			two.y -= 1
+			
+		}else if(nextRand == 3){
+			
+			two.y += 1
+		}
+		
+		Square sqOne = (Square) base.find(one)
+		Square sqTwo = (Square) base.find(two)	
+		
+		if(sqOne != sqTwo){
+			base.union(sqOne, sqTwo)
+			if		(nextRand == 0){
+			
+				base.getSquareAt(two).right = base.getSquareAt(one)
+			
+			}else if(nextRand == 1){
+			
+				base.getSquareAt(one).right = base.getSquareAt(two)
+			
+			}else if(nextRand == 2){
+			
+				base.getSquareAt(two).bottom = base.getSquareAt(one)
+			
+			}else if(nextRand == 3){
+			
+				base.getSquareAt(one).bottom = base.getSquareAt(two)
+			}
+		}
 		//TODO: implement algoritm
 		return base
 	}
