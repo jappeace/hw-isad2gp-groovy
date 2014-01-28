@@ -20,7 +20,11 @@ package nl.jappieklooster.ISAD2.maze
 import nl.jappieklooster.ISAD2.disjointsets.AbstractSetNode
 
 /**
- *
+ * represents a square on the gird.
+ * if the right and bottom square are null it means there is an edge between them.
+ * the top and left are decided by the neighbour, if this square is on the top or left edge on the board
+ * there is an edge by default. this class is ignorent of start and end, it has to be handled by somthing
+ * else
  * @author jappie
  */
 class Square extends AbstractSetNode{

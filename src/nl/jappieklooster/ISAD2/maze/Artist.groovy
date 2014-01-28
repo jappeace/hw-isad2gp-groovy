@@ -49,13 +49,13 @@ class Artist {
 				BAD_CANVAS_DIMENSION_CORRECTION
 			)
 		}
-		squareSize.width = Math.round(subject.size.width / canvas.width) 
-		squareSize.height = Math.round(subject.size.height/ canvas.height)
+		squareSize.width = Math.round(canvas.width / subject.size.width) 
+		squareSize.height = Math.round(canvas.height / subject.size.height)
 		
 		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
-		g.drawRect(0,0,canvas.width,canvas.height)
+		g.drawRect(0,0,canvas.width-1,canvas.height-100)
 		
 		// if a side == null, draw an edge
 		subject.traverseSquares{Square square, Point position ->
@@ -64,13 +64,13 @@ class Artist {
 				return
 			}
 			if(square.right == null){
-				g.drawLine(
+				drawLine(g,
 					position.x + squareSize.width, position.y, 
 					position.x + squareSize.width, position.y + squareSize.height
 				)
 			}
-			if(square.bottem == null){
-				g.drawLine(
+			if(square.bottom == null){
+				drawLine(g,
 					position.x,						position.y + squareSize.height,
 					position.x + squareSize.width,	position.y + squareSize.height
 				)
@@ -83,6 +83,17 @@ class Artist {
 		
 		g.dispose()
 		return image
+	}
+	private void drawLine(Graphics g, double x_one, double y_one,double x_two, double y_two){
+		g.drawLine(
+			doubleToInt(x_one),
+			doubleToInt(y_one),
+			doubleToInt(x_two),
+			doubleToInt(y_two)
+		)
+	}
+	private Integer doubleToInt(double input){
+		return (Integer) Math.round(input)
 	}
 }
 

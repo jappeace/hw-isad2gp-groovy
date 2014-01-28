@@ -57,6 +57,9 @@ class SquareGrid extends DisjointSets {
 		if( targetIndex < 0){
 			return null
 		}
+		if( targetIndex >= setnodes.length){
+			return null
+		}
 		return (Square) setnodes[targetIndex]
 	}
 	/**
