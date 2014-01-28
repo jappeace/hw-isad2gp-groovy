@@ -18,23 +18,41 @@
 package nl.jappieklooster.ISAD2.maze
 
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
-
+import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 /**
- *
+ * a maze with all the edges filled
  * @author jappie
  */
-class MazeFactory {
-	SquareGrid base
-	MazeFactory(){
-		base = new SquareGrid()
+class SquareGrid extends DisjointSets {
+	int width
+	int height
+	static final int DEFAULT_WIDTH = 20
+	static final int DEFAULT_HEIGHT = 20
+	
+	public SquareGrid(){
+		this(DEFAULT_WIDTH,DEFAULT_HEIGHT)
 	}
-	SquareGrid createMaze(){
-		def result = new ArrayList<Square>()
-		base.setnodes.each{ node ->
-			result.add((Square) node)
+	public SquareGrid(int width, int height){
+		super()
+		this.width = width
+		this.height = height
+		int product = width*height
+		if(product < 0){
+			throw new Exception("Expecting positive integers to create checkboard")
 		}
-		return result
+		setnodes = new ISetNode[product]
+		
+		// fil in the squares
+		0..product.each{ i ->
+			setnodes[i] = new Square()
+			setnodes[i].index = i
+		}	
 	}
-
+	/**
+	* translates the 1d array to the 2d board
+	*/
+	Square getSquareAt(int x, int y){
+		return (Square) setnodes[x + y*width]
+	}
 }
 
