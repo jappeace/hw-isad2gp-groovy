@@ -40,29 +40,46 @@ class MazeFactory {
 	}
 
 	SquareGrid createMaze(){
-		
+		int targetIndex = base.size.width * base.size.height * -1
+		while(
+			(
+				(Square) base.find(new Point(0,0))
+			).parent.index != targetIndex){
+			algoritem();
+		}
+
+		return base
+	}
+	private void algoritem(){
 		Point one = new Point(
 			random.nextInt((Integer)base.size.width), 
 			random.nextInt((Integer)base.size.height)
 		)
 		Point two = new Point(one)
-		int nextRand = random.nextInt(4)
+		int chosenSide;
 		
-
-		Square modified
-		if		(nextRand == 0){
+		if(one.x == base.size.width){
+			chosenSide = 0
+		}else if(one.y == base.size.height){
+			chosenSide = 2
+		}else {
+			chosenSide = random.nextInt(4)
+		}
+		
+		if		(chosenSide == 0){
 			
 			two.x -= 1
 			
-		}else if(nextRand == 1){
+		}else if(chosenSide == 1){
 			
+
 			two.x += 1
 			
-		}else if(nextRand == 2){
+		}else if(chosenSide == 2){
 			
 			two.y -= 1
 			
-		}else if(nextRand == 3){
+		}else if(chosenSide == 3){
 			
 			two.y += 1
 		}
@@ -72,25 +89,23 @@ class MazeFactory {
 		
 		if(sqOne != sqTwo){
 			base.union(sqOne, sqTwo)
-			if		(nextRand == 0){
+			if		(chosenSide == 0){
 			
 				base.getSquareAt(two).right = base.getSquareAt(one)
 			
-			}else if(nextRand == 1){
+			}else if(chosenSide == 1){
 			
 				base.getSquareAt(one).right = base.getSquareAt(two)
 			
-			}else if(nextRand == 2){
+			}else if(chosenSide == 2){
 			
 				base.getSquareAt(two).bottom = base.getSquareAt(one)
 			
-			}else if(nextRand == 3){
+			}else if(chosenSide == 3){
 			
 				base.getSquareAt(one).bottom = base.getSquareAt(two)
 			}
 		}
-		//TODO: implement algoritm
-		return base
 	}
 }
 
