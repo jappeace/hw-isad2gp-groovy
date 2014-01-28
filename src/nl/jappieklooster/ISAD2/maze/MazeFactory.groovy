@@ -44,7 +44,8 @@ class MazeFactory {
 		while(
 			(
 				(Square) base.find(new Point(0,0))
-			).parent.index != targetIndex){
+			).parent.index != targetIndex
+		){
 			algoritem();
 		}
 
@@ -58,7 +59,7 @@ class MazeFactory {
 		Point two = new Point(one)
 		int chosenSide;
 		
-		if		(one.x +1 == base.size.width){
+		if		(one.x == base.size.width){
 			
 			chosenSide = 0
 			
@@ -66,7 +67,7 @@ class MazeFactory {
 			
 			chosenSide = 1
 			
-		}else if(one.y +1 == base.size.height){
+		}else if(one.y == base.size.height -1){
 			
 			chosenSide = 2
 			

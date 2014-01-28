@@ -63,9 +63,9 @@ public class Window extends javax.swing.JFrame {
             .addGap(0, 418, Short.MAX_VALUE)
         );
 
-        textFieldXAmount.setText("50");
+        textFieldXAmount.setText("10");
 
-        textFieldYAmount.setText("100");
+        textFieldYAmount.setText("10");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
