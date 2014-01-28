@@ -17,29 +17,38 @@
 
 package nl.jappieklooster.ISAD2.maze
 
-import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
-
+import java.awt.Point
 /**
  *
+ * on construct this class selects 2 points to use with all error correction.
+ * Encapsulated because its only relevant for this class
  * @author jappie
  */
-class MazeFactory {
-	SquareGrid base
+class Edge {
+	private Random random = new Random()
+	Point one
+	Point two
 	
-	// a bunch of constuctors, because lazy
-	MazeFactory(){
-		this(new SquareGrid())
-	}
-	MazeFactory(int x, int y){
-		this(new SquareGrid(x, y))
-	}
-	MazeFactory(SquareGrid sg){
-		base = sg
-	}
+	Edge(SquareGrid basedOn){
+		one = new Point(random.nexInt(basedOn.size.width), random.nextInt(basedOn.size.height))
 
-	SquareGrid createMaze(){
-		//TODO: implement algoritm
-		return base
+		two = new Point(one)
+		int nextRand = random.nextInt(4)
+		
+		switch (nextRand){
+			case 0:
+				two.x -= 1
+				break;
+			case 1:
+				two.x += 1
+				break;
+			case 2:
+				two.y -= 1
+				break;
+			case 3:
+				two.y += 1
+				break;
+		}		
 	}
 }
 
