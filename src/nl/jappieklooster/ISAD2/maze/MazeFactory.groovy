@@ -32,11 +32,8 @@ class MazeFactory {
 		base = sg
 	}
 	SquareGrid createMaze(){
-		def result = new ArrayList<Square>()
-		base.setnodes.each{ node ->
-			result.add((Square) node)
-		}
-		return result
+		//TODO: implement algoritm
+		return base
 	}
 
 }
