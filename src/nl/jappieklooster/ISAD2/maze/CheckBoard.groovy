@@ -26,9 +26,11 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 class CheckBoard extends DisjointSets {
 	int width
 	int height
+	static final int DEFAULT_WIDTH = 20
+	static final int DEFAULT_HEIGHT = 20
 	
 	public CheckBoard(){
-		this(20,20)
+		this(DEFAULT_WIDTH,DEFAULT_HEIGHT)
 	}
 	public CheckBoard(int width, int height){
 		super()
@@ -43,6 +45,7 @@ class CheckBoard extends DisjointSets {
 		// fil in the squares
 		0..product.each{ i ->
 			setnodes[i] = new Square()
+			setnodes[i].index = i
 		}	
 	}
 	/**

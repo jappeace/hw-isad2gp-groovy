@@ -25,8 +25,15 @@ import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
  */
 class MazeFactory {
 	CheckBoard base
+	MazeFactory(){
+		base = new CheckBoard()
+	}
 	Collection<Square> createMaze(){
-		
+		def result = new ArrayList<Square>()
+		base.setnodes.each{ node ->
+			result.add((Square) node)
+		}
+		return result
 	}
 
 }
