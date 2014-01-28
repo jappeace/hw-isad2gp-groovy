@@ -28,9 +28,13 @@ class MazeFactory {
 	MazeFactory(){
 		this(new SquareGrid())
 	}
+	MazeFactory(int x, int y){
+		this(new SquareGrid(x, y))
+	}
 	MazeFactory(SquareGrid sg){
 		base = sg
 	}
+
 	SquareGrid createMaze(){
 		//TODO: implement algoritm
 		return base

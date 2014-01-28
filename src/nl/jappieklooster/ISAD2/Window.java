@@ -16,6 +16,7 @@
  */
 
 package nl.jappieklooster.ISAD2;
+import java.lang.Integer;
 /**
  *
  * @author jappie
@@ -39,6 +40,8 @@ public class Window extends javax.swing.JFrame {
 
         buttonStartGeneration = new javax.swing.JButton();
         mazePanel = new nl.jappieklooster.ISAD2.maze.MazePanel();
+        textFieldXAmount = new javax.swing.JTextField();
+        textFieldYAmount = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,10 @@ public class Window extends javax.swing.JFrame {
             .addGap(0, 418, Short.MAX_VALUE)
         );
 
+        textFieldXAmount.setText("50");
+
+        textFieldYAmount.setText("100");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +75,12 @@ public class Window extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mazePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonStartGeneration))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textFieldXAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(textFieldYAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonStartGeneration)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,7 +89,10 @@ public class Window extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(mazePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonStartGeneration)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonStartGeneration)
+                    .addComponent(textFieldXAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldYAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -85,12 +100,22 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonStartGenerationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGenerationActionPerformed
-        mazePanel.render();
+		mazePanel.setGridSize(
+				Integer.parseInt(
+					textFieldXAmount.getText()
+				), 
+				Integer.parseInt(
+					textFieldYAmount.getText()
+				)
+		);
+		mazePanel.render();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonStartGeneration;
     private nl.jappieklooster.ISAD2.maze.MazePanel mazePanel;
+    private javax.swing.JTextField textFieldXAmount;
+    private javax.swing.JTextField textFieldYAmount;
     // End of variables declaration//GEN-END:variables
 }

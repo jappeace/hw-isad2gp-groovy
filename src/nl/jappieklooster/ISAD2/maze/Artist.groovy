@@ -30,9 +30,8 @@ import java.awt.Color
  */
 class Artist {
 	private BufferedImage image
-	SquareGrid subject
+	MazeFactory mazeFactory
 	MazePanel canvas
-	Dimension correctedCanvasSize
 	private static final int BAD_CANVAS_DIMENSION_CORRECTION = 500
 	public Artist(){
 		super()
@@ -44,6 +43,7 @@ class Artist {
 
 	Image render(){
 		Dimension squareSize = new Dimension(0,0)
+		SquareGrid subject = mazeFactory.createMaze()
 		
 		if(canvas.width * canvas.height <= 0){
 			canvas.size = new Dimension(
@@ -51,7 +51,7 @@ class Artist {
 				BAD_CANVAS_DIMENSION_CORRECTION
 			)
 		}
-		correctedCanvasSize = new Dimension(canvas.width-1,canvas.height-100)
+		Dimension correctedCanvasSize = new Dimension(canvas.width-1,canvas.height-100)
 		
 		squareSize.width = Math.round(correctedCanvasSize.width / subject.size.width) 
 		squareSize.height = Math.round(correctedCanvasSize.height / subject.size.height)
@@ -59,7 +59,8 @@ class Artist {
 		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
-		g.drawRect(0,0,(Integer)correctedCanvasSize.width,(Integer)correctedCanvasSize.height)
+		drawLine(g, 0,0,(Integer)correctedCanvasSize.width, 0)
+		drawLine(g, 0,0,0, (Integer)correctedCanvasSize.height)
 		
 		// if a side == null, draw an edge
 		subject.traverseSquares{Square square, Point position ->

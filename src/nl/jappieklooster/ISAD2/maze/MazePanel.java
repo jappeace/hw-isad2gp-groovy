@@ -35,17 +35,19 @@ public class MazePanel extends javax.swing.JPanel {
 		
 		// tie the groovy code into java
 		artist = new Artist();
-		MazeFactory mf = new MazeFactory(new SquareGrid(50, 100));
-		artist.setSubject(mf.createMaze());
+		artist.setMazeFactory(new MazeFactory(10, 10));
 		artist.setCanvas(this);
 		artist.render();
 	}
-	
+	public void setGridSize(int x, int y){
+		artist.setMazeFactory(new MazeFactory(x, y));
+	}
 	public void render(){
 		artist.render();
+		this.repaint();
 	}
 	@Override
-	protected void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		super.paintComponent(g);
 		Image img = artist.getImage();
 		if (img != null) {
