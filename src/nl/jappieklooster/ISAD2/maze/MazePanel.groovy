@@ -19,6 +19,7 @@ package nl.jappieklooster.ISAD2.maze
 
 import java.awt.Dimension
 import java.awt.Graphics
+import java.awt.Point
 import java.awt.image.BufferedImage
 import javax.swing.JPanel
 
@@ -27,12 +28,10 @@ import javax.swing.JPanel
  * @author jappie
  */
 class MazePanel extends JPanel {
-	private Dimension squareSize
 	private BufferedImage image
 	SquareGrid subject
 	public MazePanel(){
 		super()
-		squareSize = new Dimension(0,0)
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -43,6 +42,7 @@ class MazePanel extends JPanel {
 	}
 
 	void render(){
+		Dimension squareSize = new Dimension(0,0)
 		squareSize.width = Math.round(subject.size.width / width) 
 		squareSize.height = Math.round(subject.size.height/ height)
 		
@@ -51,8 +51,24 @@ class MazePanel extends JPanel {
 		g.setColor(Color.black)
 		g.drawRect(0,0,width,height)
 		
-		subject.setnodes.each{
-			
+		// if a side == null, draw an edge
+		subject.traverseSquares{Square square, Point position ->
+			if(square.right == null){
+				g.drawLine(
+					position.x + squareSize.width, position.y, 
+					position.x + squareSize.width, position.y + squareSize.height
+				)
+			}
+			if(square.bottem == null){
+				g.drawLine(
+					position.x,						position.y + squareSize.height,
+					position.x + squareSize.width,	position.y + squareSize.height
+				)
+			}
+			/* only bottem and right need be handled, because the squares next to the current one
+			 * will handle this ones edeges on the left and top. 
+			 * the initial border is handled elsewhere
+			*/
 		}
 	}
 }

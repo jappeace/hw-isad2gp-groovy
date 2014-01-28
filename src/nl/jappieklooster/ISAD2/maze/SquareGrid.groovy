@@ -18,6 +18,7 @@
 package nl.jappieklooster.ISAD2.maze
 
 import java.awt.Dimension
+import java.awt.Point
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
 import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 /**
@@ -49,10 +50,23 @@ class SquareGrid extends DisjointSets {
 		}	
 	}
 	/**
-	* translates the 1d array to the 2d board
-	*/
+	 * translates the 1d array to the 2d board
+	 * @return the found square or null on nothing
+	 */
 	Square getSquareAt(int x, int y){
-		return (Square) setnodes[x + y*width]
+		int targetIndex = x + y*width
+		if( targetIndex < 0){
+			return null
+		}
+		return (Square) setnodes[targetIndex]
+	}
+	
+	void traverseSquares(Closure with){
+		0..size.height.each{ y ->
+			0..size.width.each{ x ->
+				with(getSauareAt(x,y), new Point(x,y))
+			}
+		}
 	}
 }
 
