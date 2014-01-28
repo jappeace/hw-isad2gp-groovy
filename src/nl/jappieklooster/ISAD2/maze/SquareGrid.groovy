@@ -23,7 +23,7 @@ import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
 import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 import nl.jappieklooster.Log
 /**
- * a maze with all the edges filled
+ * A class for easaly handaling a grid as a one dimensional array...
  * @author jappie
  */
 class SquareGrid extends DisjointSets {
@@ -72,19 +72,46 @@ class SquareGrid extends DisjointSets {
 	Square getSquareAt(double x, double y){
 		return getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
 	}
+	
+	/**
+	 * walk trough all elements and execute the closure
+	 */
 	void traverseSquares(Closure with){
 		(0..(size.height-1)).each{ y ->
-			(0..size.width).each{ x ->
-				// truncate the double values to ints
-				Point point =  new Point((Integer)Math.round(x),(Integer)Math.round(y))
-				
-				// do the callback
-				with(
-					getSquareAt(point.x,point.y), 
-					point
-				)
-			}
+			traverseRow(y, with)
 		}
+	}
+	
+	/**
+	 * walk trough a single collumn
+	 */
+	void traverseCollumn(int number, Closure with){
+		(0..(size.height-1)).each{ y ->
+			traverse(number, y, with)
+		}	
+	}
+	/**
+	 * walk trough a single row
+	 */
+	void traverseRow(int number, Closure with){
+		(0..size.width).each{ x ->
+			traverse(y, number, with)
+		}
+	}
+	/**
+	 * final stage in all the traverse methods, get the cell and do the closure/callback 
+	 * */
+	private void traverse(double x, double y, Closure with){
+		// round the point
+		Point point =  new Point(
+			(Integer)Math.round(x),
+			(Integer)Math.round(y)
+		)
+		// do the callback
+		with(
+			getSquareAt(point.x,point.y), 
+			point
+		)
 	}
 }
 
