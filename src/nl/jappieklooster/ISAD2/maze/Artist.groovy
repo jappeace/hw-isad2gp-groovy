@@ -51,7 +51,7 @@ class Artist {
 				BAD_CANVAS_DIMENSION_CORRECTION
 			)
 		}
-		Dimension correctedCanvasSize = new Dimension(canvas.width-1,canvas.height-100)
+		Dimension correctedCanvasSize = new Dimension(canvas.width-100,canvas.height-100)
 		
 		squareSize.width = Math.round(correctedCanvasSize.width / subject.size.width) 
 		squareSize.height = Math.round(correctedCanvasSize.height / subject.size.height)
@@ -59,8 +59,7 @@ class Artist {
 		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
-		drawLine(g, 0,0,(Integer)correctedCanvasSize.width, 0)
-		drawLine(g, 0,0,0, (Integer)correctedCanvasSize.height)
+
 		
 		// if a side == null, draw an edge
 		subject.traverseSquares{Square square, Point position ->
@@ -91,6 +90,19 @@ class Artist {
 			 * the initial border is handled elsewhere
 			*/
 		}
+		
+		// draw the missing left and top 
+		double xOffset = 0
+		subject.traverseRow(0, { Square square, Point position ->
+			xOffset = position.x * squareSize.width
+		})
+		drawLine(g, 0,0,xOffset, 0)
+		
+		double yOffset = 0
+		subject.traverseCollumn(0, { Square square, Point position ->
+			yOffset = position.y * squareSize.height
+		})		
+		drawLine(g, 0,0,0, yOffset)
 		
 		g.dispose()
 		return image
