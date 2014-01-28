@@ -52,18 +52,31 @@ class SquareGrid extends DisjointSets {
 	 * translates the 1d array to the 2d board
 	 * @return the found square or null on nothing
 	 */
-	Square getSquareAt(int x, int y){
-		int targetIndex = x + y*width
+	Square getSquareAt(Integer x, Integer y){
+		int targetIndex = x + y*size.width
 		if( targetIndex < 0){
 			return null
 		}
 		return (Square) setnodes[targetIndex]
 	}
-	
+	/**
+	* round and truncates the double value to make it compatible with the int type function.
+	* indexcies are always ints in a array
+	*/
+	Square getSquareAt(double x, double y){
+		return getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
+	}
 	void traverseSquares(Closure with){
 		0..size.height.each{ y ->
 			0..size.width.each{ x ->
-				with(getSauareAt(x,y), new Point(x,y))
+				// truncate the double values to ints
+				Point point =  new Point((Integer)Math.round(x),(Integer)Math.round(y))
+				
+				// do the callback
+				with(
+					getSquareAt(point.x-1,point.y-1), 
+					point
+				)
 			}
 		}
 	}

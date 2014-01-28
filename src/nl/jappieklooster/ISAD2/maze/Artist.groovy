@@ -22,6 +22,7 @@ import java.awt.Graphics
 import java.awt.Image
 import java.awt.Point
 import java.awt.image.BufferedImage
+import java.awt.Color
 
 /**
  * a class that renders the maze on a java pane
@@ -31,7 +32,7 @@ class Artist {
 	private BufferedImage image
 	SquareGrid subject
 	MazePanel canvas
-	
+	private static final int BAD_CANVAS_DIMENSION_CORRECTION = 500
 	public Artist(){
 		super()
 	}
@@ -42,16 +43,26 @@ class Artist {
 
 	Image render(){
 		Dimension squareSize = new Dimension(0,0)
+		if(canvas.width * canvas.height <= 0){
+			canvas.size = new Dimension(
+				BAD_CANVAS_DIMENSION_CORRECTION,
+				BAD_CANVAS_DIMENSION_CORRECTION
+			)
+		}
 		squareSize.width = Math.round(subject.size.width / canvas.width) 
 		squareSize.height = Math.round(subject.size.height/ canvas.height)
 		
 		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
-		g.drawRect(0,0,width,height)
+		g.drawRect(0,0,canvas.width,canvas.height)
 		
 		// if a side == null, draw an edge
 		subject.traverseSquares{Square square, Point position ->
+			if(square == null){
+				// return == continue, because of callback
+				return
+			}
 			if(square.right == null){
 				g.drawLine(
 					position.x + squareSize.width, position.y, 
