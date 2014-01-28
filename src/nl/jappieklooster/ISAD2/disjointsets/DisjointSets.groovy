@@ -32,7 +32,7 @@ class DisjointSets implements IDisjointSets{
 		if(isRoot(from)){
 			return target
 		}else{
-			return find(target)
+			return find(target.parent)
 		}
 	}
 	
@@ -43,7 +43,7 @@ class DisjointSets implements IDisjointSets{
 		if(!isRoot(two)){
 			two = find(two)
 		}
-		if(one.index < two.index){
+		if(one.parent.index < two.parent.index){
 			one.parent.index += two.parent.index
 			two.parent = one
 		}else{
@@ -52,8 +52,8 @@ class DisjointSets implements IDisjointSets{
 		}
 	}
 	
-	private boolean isRoot(ISetNode n){
-		n.parent.index < 0
+	private boolean isRoot(ISetNode node){
+		node.parent.index < 0
 	}
 }
 

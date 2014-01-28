@@ -32,5 +32,9 @@ abstract class AbstractSetNode implements ISetNode {
 			Comparable index = -1
 		}		
 	}
+	
+	String toString(){
+		return index + " <- " + parent
+	}
 }
 
