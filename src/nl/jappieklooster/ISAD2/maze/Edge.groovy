@@ -26,12 +26,16 @@ import java.awt.Point
  */
 class Edge {
 	private Random random = new Random()
+	private SquareGrid squareGrid
 	Point one
 	Point two
 	
 	Edge(SquareGrid basedOn){
-		one = new Point(random.nexInt(basedOn.size.width), random.nextInt(basedOn.size.height))
-
+		squareGrid = basedOn
+		init()
+	}
+	private final void init(){
+		one = createRandomPoint()
 		two = new Point(one)
 		int nextRand = random.nextInt(4)
 		
@@ -48,7 +52,14 @@ class Edge {
 			case 3:
 				two.y += 1
 				break;
-		}		
+		}
+		
+		if(squareGrid.find(squareGrid.getSquareAt(one)) == squareGrid.find(squareGrid.getSquareAt(two))){
+			init()
+		}
+	}
+	private final Point createRandomPoint(){
+		new Point(random.nexInt(squareGrid.size.width), random.nextInt(squareGrid.size.height))
 	}
 }
 

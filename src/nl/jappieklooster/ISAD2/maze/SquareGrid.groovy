@@ -74,6 +74,13 @@ class SquareGrid extends DisjointSets {
 	}
 	
 	/**
+	 * an easier interface on top of the primitive find
+	 */
+	ISetNode find(Point p){
+		find(getSquareAt(p.x, p.y))
+	}
+	
+	/**
 	 * walk trough all elements and execute the closure
 	 */
 	void traverseSquares(Closure with){
