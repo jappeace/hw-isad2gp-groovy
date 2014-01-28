@@ -17,6 +17,7 @@
 
 package nl.jappieklooster.ISAD2.maze
 
+import java.awt.Dimension
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
 import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 /**
@@ -24,8 +25,7 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
  * @author jappie
  */
 class SquareGrid extends DisjointSets {
-	int width
-	int height
+	Dimension size
 	static final int DEFAULT_WIDTH = 20
 	static final int DEFAULT_HEIGHT = 20
 	
@@ -34,8 +34,8 @@ class SquareGrid extends DisjointSets {
 	}
 	public SquareGrid(int width, int height){
 		super()
-		this.width = width
-		this.height = height
+		size.width = width
+		size.height = height
 		int product = width*height
 		if(product < 0){
 			throw new Exception("Expecting positive integers to create checkboard")
