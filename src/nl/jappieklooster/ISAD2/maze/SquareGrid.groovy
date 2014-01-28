@@ -21,6 +21,7 @@ import java.awt.Dimension
 import java.awt.Point
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
 import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
+import nl.jappieklooster.Log
 /**
  * a maze with all the edges filled
  * @author jappie
@@ -55,9 +56,11 @@ class SquareGrid extends DisjointSets {
 	Square getSquareAt(Integer x, Integer y){
 		int targetIndex = x + y*size.width
 		if( targetIndex < 0){
+			Log.warn "trying to get a negative index with x {0} and y {1}", x, y
 			return null
 		}
 		if( targetIndex >= setnodes.length){
+			Log.warn "trying to get a index out of bounds with x {0} and y {1}", x, y
 			return null
 		}
 		return (Square) setnodes[targetIndex]
@@ -70,8 +73,9 @@ class SquareGrid extends DisjointSets {
 		return getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
 	}
 	void traverseSquares(Closure with){
-		(0..size.height).each{ y ->
+		(0..(size.height-1)).each{ y ->
 			(0..size.width).each{ x ->
+				Log.debug "traversing square x: {0} and y: {1}", x, y
 				// truncate the double values to ints
 				Point point =  new Point((Integer)Math.round(x),(Integer)Math.round(y))
 				
