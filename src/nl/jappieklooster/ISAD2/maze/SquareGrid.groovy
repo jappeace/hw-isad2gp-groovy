@@ -44,7 +44,7 @@ class SquareGrid extends DisjointSets {
 		setnodes = new ISetNode[product+1]
 		
 		// fil in the squares
-		0..product.each{ i ->
+		(0..product).each{ i ->
 			setnodes[i] = new Square()
 			setnodes[i].index = i
 		}	

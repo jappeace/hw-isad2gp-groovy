@@ -69,10 +69,8 @@ class Artist {
 			}
 			if(square.right == null){
 				drawLine(g,
-					correctedCanvasSize.width  / (position.x *squareSize.width + squareSize.width), 
-					correctedCanvasSize.height / (position.y * squareSize.height), 
-					correctedCanvasSize.width  / (position.x *squareSize.width + squareSize.width), 
-					correctedCanvasSize.height / (position.y * squareSize.height + squareSize.height)
+					position.x + squareSize.width, position.y, 
+					position.x + squareSize.width, position.y + squareSize.height
 				)
 			}
 			if(square.bottom == null){
