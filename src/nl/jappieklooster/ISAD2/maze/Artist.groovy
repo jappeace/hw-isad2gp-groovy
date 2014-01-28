@@ -19,34 +19,33 @@ package nl.jappieklooster.ISAD2.maze
 
 import java.awt.Dimension
 import java.awt.Graphics
+import java.awt.Image
 import java.awt.Point
 import java.awt.image.BufferedImage
-import javax.swing.JPanel
 
 /**
  * a class that renders the maze on a java pane
  * @author jappie
  */
-class MazePanel extends JPanel {
+class Artist {
 	private BufferedImage image
 	SquareGrid subject
-	public MazePanel(){
+	MazePanel canvas
+	
+	public Artist(){
 		super()
 	}
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		if (image != null) {
-			g.drawImage(image, 0, 0, null);
-		}
+	
+	Image getImage(){
+		return image
 	}
 
-	void render(){
+	Image render(){
 		Dimension squareSize = new Dimension(0,0)
-		squareSize.width = Math.round(subject.size.width / width) 
-		squareSize.height = Math.round(subject.size.height/ height)
+		squareSize.width = Math.round(subject.size.width / canvas.width) 
+		squareSize.height = Math.round(subject.size.height/ canvas.height)
 		
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
 		g.drawRect(0,0,width,height)
@@ -70,6 +69,9 @@ class MazePanel extends JPanel {
 			 * the initial border is handled elsewhere
 			*/
 		}
+		
+		g.dispose()
+		return image
 	}
 }
 

@@ -26,7 +26,10 @@ import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
 class MazeFactory {
 	SquareGrid base
 	MazeFactory(){
-		base = new SquareGrid()
+		this(new SquareGrid())
+	}
+	MazeFactory(SquareGrid sg){
+		base = sg
 	}
 	SquareGrid createMaze(){
 		def result = new ArrayList<Square>()
