@@ -40,6 +40,10 @@ public class MazePanel extends javax.swing.JPanel {
 		artist.setCanvas(this);
 		artist.render();
 	}
+	
+	public void render(){
+		artist.render();
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

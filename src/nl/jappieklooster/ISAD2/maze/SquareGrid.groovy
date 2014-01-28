@@ -67,14 +67,14 @@ class SquareGrid extends DisjointSets {
 		return getSquareAt((Integer) Math.round(x),(Integer) Math.round(y))
 	}
 	void traverseSquares(Closure with){
-		0..size.height.each{ y ->
-			0..size.width.each{ x ->
+		(0..size.height).each{ y ->
+			(0..size.width).each{ x ->
 				// truncate the double values to ints
 				Point point =  new Point((Integer)Math.round(x),(Integer)Math.round(y))
 				
 				// do the callback
 				with(
-					getSquareAt(point.x-1,point.y-1), 
+					getSquareAt(point.x,point.y), 
 					point
 				)
 			}

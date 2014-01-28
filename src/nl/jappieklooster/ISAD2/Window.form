@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="mazePanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="mazePanel" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonStartGeneration" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
@@ -37,7 +37,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="mazePanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="mazePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="buttonStartGeneration" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -54,7 +54,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonStartGenerationActionPerformed"/>
       </Events>
     </Component>
-    <Container class="nl.jappieklooster.ISAD2.maze.MazePanel" name="mazePanel1">
+    <Container class="nl.jappieklooster.ISAD2.maze.MazePanel" name="mazePanel">
 
       <Layout>
         <DimensionLayout dim="0">

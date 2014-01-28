@@ -38,7 +38,7 @@ public class Window extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonStartGeneration = new javax.swing.JButton();
-        mazePanel1 = new nl.jappieklooster.ISAD2.maze.MazePanel();
+        mazePanel = new nl.jappieklooster.ISAD2.maze.MazePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,14 +49,14 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout mazePanel1Layout = new javax.swing.GroupLayout(mazePanel1);
-        mazePanel1.setLayout(mazePanel1Layout);
-        mazePanel1Layout.setHorizontalGroup(
-            mazePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout mazePanelLayout = new javax.swing.GroupLayout(mazePanel);
+        mazePanel.setLayout(mazePanelLayout);
+        mazePanelLayout.setHorizontalGroup(
+            mazePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 719, Short.MAX_VALUE)
         );
-        mazePanel1Layout.setVerticalGroup(
-            mazePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        mazePanelLayout.setVerticalGroup(
+            mazePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 418, Short.MAX_VALUE)
         );
 
@@ -67,7 +67,7 @@ public class Window extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mazePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mazePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonStartGeneration))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -75,7 +75,7 @@ public class Window extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mazePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mazePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonStartGeneration)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -85,12 +85,12 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonStartGenerationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGenerationActionPerformed
-        // TODO add your handling code here:
+        mazePanel.render();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonStartGeneration;
-    private nl.jappieklooster.ISAD2.maze.MazePanel mazePanel1;
+    private nl.jappieklooster.ISAD2.maze.MazePanel mazePanel;
     // End of variables declaration//GEN-END:variables
 }
