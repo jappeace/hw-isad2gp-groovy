@@ -58,12 +58,26 @@ class MazeFactory {
 		Point two = new Point(one)
 		int chosenSide;
 		
-		if(one.x == base.size.width){
+		if		(one.x +1 == base.size.width){
+			
 			chosenSide = 0
-		}else if(one.y == base.size.height){
+			
+		}else if(one.x == 0){
+			
+			chosenSide = 1
+			
+		}else if(one.y +1 == base.size.height){
+			
 			chosenSide = 2
+			
+		}else if(one.y == 0){
+			
+			chosenSide = 3
+			
 		}else {
+			
 			chosenSide = random.nextInt(4)
+			
 		}
 		
 		if		(chosenSide == 0){
