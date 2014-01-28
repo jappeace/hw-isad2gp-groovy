@@ -32,6 +32,7 @@ class Artist {
 	private BufferedImage image
 	SquareGrid subject
 	MazePanel canvas
+	Dimension correctedCanvasSize
 	private static final int BAD_CANVAS_DIMENSION_CORRECTION = 500
 	public Artist(){
 		super()
@@ -43,19 +44,22 @@ class Artist {
 
 	Image render(){
 		Dimension squareSize = new Dimension(0,0)
+		
 		if(canvas.width * canvas.height <= 0){
 			canvas.size = new Dimension(
 				BAD_CANVAS_DIMENSION_CORRECTION,
 				BAD_CANVAS_DIMENSION_CORRECTION
 			)
 		}
-		squareSize.width = Math.round(canvas.width / subject.size.width) 
-		squareSize.height = Math.round(canvas.height / subject.size.height)
+		correctedCanvasSize = new Dimension(canvas.width-1,canvas.height-100)
+		
+		squareSize.width = Math.round(correctedCanvasSize.width / subject.size.width) 
+		squareSize.height = Math.round(correctedCanvasSize.height / subject.size.height)
 		
 		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
-		g.drawRect(0,0,canvas.width-1,canvas.height-100)
+		g.drawRect(0,0,(Integer)correctedCanvasSize.width,(Integer)correctedCanvasSize.height)
 		
 		// if a side == null, draw an edge
 		subject.traverseSquares{Square square, Point position ->
@@ -65,8 +69,10 @@ class Artist {
 			}
 			if(square.right == null){
 				drawLine(g,
-					position.x + squareSize.width, position.y, 
-					position.x + squareSize.width, position.y + squareSize.height
+					correctedCanvasSize.width  / (position.x *squareSize.width + squareSize.width), 
+					correctedCanvasSize.height / (position.y * squareSize.height), 
+					correctedCanvasSize.width  / (position.x *squareSize.width + squareSize.width), 
+					correctedCanvasSize.height / (position.y * squareSize.height + squareSize.height)
 				)
 			}
 			if(square.bottom == null){
