@@ -24,6 +24,8 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
  * @author jappie
  */
 abstract class AbstractSetNode implements ISetNode {
+	ISetNode parent
+	Comparable index
 	AbstractSetNode(){
 		parent = new ISetNode(){
 			ISetNode parent = null

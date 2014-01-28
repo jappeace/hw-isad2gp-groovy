@@ -35,8 +35,7 @@ class SquareGrid extends DisjointSets {
 	}
 	public SquareGrid(int width, int height){
 		super()
-		size.width = width
-		size.height = height
+		size = new Dimension(width, height)
 		int product = width*height
 		if(product < 0){
 			throw new Exception("Expecting positive integers to create checkboard")
