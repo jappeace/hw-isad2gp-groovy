@@ -67,16 +67,22 @@ class Artist {
 				// return == continue, because of callback
 				return
 			}
+			position.x *= squareSize.width
+			position.y *= squareSize.height
 			if(square.right == null){
 				drawLine(g,
-					position.x + squareSize.width, position.y, 
-					position.x + squareSize.width, position.y + squareSize.height
+					position.x + squareSize.width, 
+					position.y, 
+					position.x + squareSize.width, 
+					position.y + squareSize.height
 				)
 			}
 			if(square.bottom == null){
 				drawLine(g,
-					position.x,						position.y + squareSize.height,
-					position.x + squareSize.width,	position.y + squareSize.height
+					position.x,						
+					position.y + squareSize.height,
+					position.x + squareSize.width,	
+					position.y + squareSize.height
 				)
 			}
 			/* only bottem and right need be handled, because the squares next to the current one

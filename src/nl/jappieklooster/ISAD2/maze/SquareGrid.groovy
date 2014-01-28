@@ -75,7 +75,6 @@ class SquareGrid extends DisjointSets {
 	void traverseSquares(Closure with){
 		(0..(size.height-1)).each{ y ->
 			(0..size.width).each{ x ->
-				Log.debug "traversing square x: {0} and y: {1}", x, y
 				// truncate the double values to ints
 				Point point =  new Point((Integer)Math.round(x),(Integer)Math.round(y))
 				
