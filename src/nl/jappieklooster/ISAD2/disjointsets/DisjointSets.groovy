@@ -31,21 +31,13 @@ class DisjointSets implements IDisjointSets{
 	* does the recursive call and compresses the tree
 	*/
 	ISetNode find(ISetNode from){
-		def comprTargets = new Stack<ISetNode>() // stacks are fast
-		ISetNode result = recursiveFind(from, comprTargets)
-		comprTargets.each{ISetNode node ->
-			node.parent = result
-		}
-		return result
-	}
-		
-	ISetNode recursiveFind(ISetNode from, Collection<ISetNode> previous){
 		ISetNode target = setnodes[from.index]
 		if(isRoot(target)){
 			return target
 		}else{
-			previous.add(target)
-			return recursiveFind(target.parent, previous)
+			ISetNode root = find(target.parent)
+			target.parent = root
+			return root
 		}
 	}
 	
