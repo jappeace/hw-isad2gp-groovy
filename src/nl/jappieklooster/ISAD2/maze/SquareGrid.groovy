@@ -107,7 +107,7 @@ class SquareGrid extends DisjointSets {
 	 * walk trough a single row
 	 */
 	void traverseRow(int number, Closure with){
-		(0..size.width).each{ x ->
+		(0..size.width-1).each{ x ->
 			traverse(x, number, with)
 		}
 	}
