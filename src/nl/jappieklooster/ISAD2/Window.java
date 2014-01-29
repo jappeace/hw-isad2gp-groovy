@@ -131,15 +131,6 @@ public class Window extends javax.swing.JFrame {
 		);
 		
 		mazePanel.render();
-		new Thread(
-				new Runnable() {
-					
-					@Override
-					public void run() {
-						Log.debug("breakline");
-					}
-				}
-		).start();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
 
