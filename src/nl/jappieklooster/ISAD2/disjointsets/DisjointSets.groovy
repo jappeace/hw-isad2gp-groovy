@@ -27,12 +27,25 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 class DisjointSets implements IDisjointSets{
 	ISetNode[] setnodes
 	
+	/**
+	* does the recursive call and compresses the tree
+	*/
 	ISetNode find(ISetNode from){
+		def comprTargets = new Stack<ISetNode>() // stacks are fast
+		ISetNode result = recursiveFind(from, comprTargets)
+		comprTargets.each{ISetNode node ->
+			node.parent = result
+		}
+		return result
+	}
+		
+	ISetNode recursiveFind(ISetNode from, Collection<ISetNode> previous){
 		ISetNode target = setnodes[from.index]
-		if(isRoot(from)){
+		if(isRoot(target)){
 			return target
 		}else{
-			return find(target.parent)
+			previous.add(target)
+			return recursiveFind(target.parent, previous)
 		}
 	}
 	

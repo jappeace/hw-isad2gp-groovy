@@ -57,7 +57,7 @@ class MazeFactory {
 			random.nextInt((Integer)base.size.height)
 		)
 		Point two = new Point(one)
-		int chosenSide;
+		int chosenSide= random.nextInt(4)
 		
 		if		(one.x == base.size.width){
 			
@@ -74,10 +74,6 @@ class MazeFactory {
 		}else if(one.y == 0){
 			
 			chosenSide = 3
-			
-		}else {
-			
-			chosenSide = random.nextInt(4)
 			
 		}
 		

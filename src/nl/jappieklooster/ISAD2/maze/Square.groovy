@@ -18,7 +18,7 @@
 package nl.jappieklooster.ISAD2.maze
 
 import nl.jappieklooster.ISAD2.disjointsets.AbstractSetNode
-
+import nl.jappieklooster.Log
 /**
  * represents a square on the gird.
  * if the right and bottom square are null it means there is an edge between them.
@@ -30,9 +30,23 @@ import nl.jappieklooster.ISAD2.disjointsets.AbstractSetNode
 class Square extends AbstractSetNode{
 	Square right
 	Square bottom
-	
+
 	Square(){
 		super()
+	}
+	
+	void setRight(Square to){
+		if(right != null){
+			Log.warn "overiding a set right: {0} to {1}",right, to
+		}
+		right = to		
+	}
+		
+	void setBottom(Square to){
+		if(bottom != null){
+			Log.warn "overiding a set bottom: {0} to {1}",bottom, to
+		}
+		bottom = to
 	}
 }
 
