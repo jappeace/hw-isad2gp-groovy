@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package nl.jappieklooster.ISAD2;
+
 import nl.jappieklooster.Log;
 
 /**
@@ -128,16 +129,17 @@ public class Window extends javax.swing.JFrame {
 						textFieldYAmount.getText()
 				)
 		);
-
+		
 		mazePanel.render();
-				new Thread(
+		new Thread(
 				new Runnable() {
-
+					
 					@Override
 					public void run() {
 						Log.debug("breakline");
 					}
-				}).start();
+				}
+		).start();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
 
