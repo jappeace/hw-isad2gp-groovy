@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package nl.jappieklooster.ISAD2;
-import java.lang.Integer;
+import nl.jappieklooster.Log;
+
 /**
  *
  * @author jappie
@@ -122,13 +122,22 @@ public class Window extends javax.swing.JFrame {
     private void buttonStartGenerationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGenerationActionPerformed
 		mazePanel.setGridSize(
 				Integer.parseInt(
-					textFieldXAmount.getText()
-				), 
+						textFieldXAmount.getText()
+				),
 				Integer.parseInt(
-					textFieldYAmount.getText()
+						textFieldYAmount.getText()
 				)
 		);
+
 		mazePanel.render();
+				new Thread(
+				new Runnable() {
+
+					@Override
+					public void run() {
+						Log.debug("breakline");
+					}
+				}).start();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
 

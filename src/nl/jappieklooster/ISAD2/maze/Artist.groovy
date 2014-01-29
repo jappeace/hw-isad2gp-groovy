@@ -69,6 +69,9 @@ class Artist {
 			}
 			position.x *= squareSize.width
 			position.y *= squareSize.height
+			drawString(g, "this: " + square, position, squareSize, 0.2)
+			drawString(g, "right: " + square.right, position, squareSize, 0.4)
+			drawString(g, "bottom: " +square.bottom, position, squareSize, 0.6)
 			if(square.right == null){
 				drawLine(g,
 					position.x + squareSize.width, 
@@ -106,6 +109,13 @@ class Artist {
 		
 		g.dispose()
 		return image
+	}
+	private void drawString(Graphics g, String str, Point position, Dimension squareSize, float offset){
+			g.drawString(
+				str,
+				doubleToInt(position.x),
+				doubleToInt(position.y + offset*squareSize.height)
+				)		
 	}
 	private void drawLine(Graphics g, double x_one, double y_one,double x_two, double y_two){
 		g.drawLine(

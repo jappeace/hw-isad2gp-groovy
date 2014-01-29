@@ -34,7 +34,7 @@ abstract class AbstractSetNode implements ISetNode {
 	}
 	
 	String toString(){
-		return index + " <- " + parent
+		return index
 	}
 }
 
