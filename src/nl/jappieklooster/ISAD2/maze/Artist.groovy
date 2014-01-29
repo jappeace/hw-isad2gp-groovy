@@ -69,9 +69,7 @@ class Artist {
 			}
 			position.x *= squareSize.width
 			position.y *= squareSize.height
-			drawString(g, "this: " + square, position, squareSize, 0.2)
-			drawString(g, "right: " + square.right, position, squareSize, 0.4)
-			drawString(g, "bottom: " +square.bottom, position, squareSize, 0.6)
+			
 			if(square.right == null){
 				drawLine(g,
 					position.x + squareSize.width, 
