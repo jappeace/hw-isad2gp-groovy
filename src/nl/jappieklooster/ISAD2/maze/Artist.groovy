@@ -23,7 +23,7 @@ import java.awt.Image
 import java.awt.Point
 import java.awt.image.BufferedImage
 import java.awt.Color
-
+import java.lang.management.ManagementFactory
 /**
  * a class that renders the maze on a java pane
  * @author jappie
@@ -70,6 +70,41 @@ class Artist {
 			position.x *= squareSize.width
 			position.y *= squareSize.height
 			
+			if(square.visited){
+				g.setColor(Color.green)
+				g.fillRect(
+					Math.round(position.x + squareSize.width * 0.1), 
+					Math.round(position.y + squareSize.height* 0.1),
+					Math.round(position.x + squareSize.width * 0.9),
+					Math.round(position.y + squareSize.height* 0.9)
+				)
+			}
+			if(ManagementFactory.runtimeMXBean.inputArguments.toString().indexOf("jdwp") >= 0){
+				drawString(
+					g, 
+					"        ${square.top}",
+					position, 
+					squareSize, 
+					0.3
+				)
+				drawString(
+					g,
+					"${square.left} <- ${square} -> ${square.right}", 
+					position, 
+					squareSize, 
+					0.5
+				)
+				drawString(
+					g,
+					"        ${square.bottom}", 
+					position, 
+					squareSize, 
+					0.7
+				)
+			}
+			
+			g.setColor(Color.black)
+			
 			if(square.right == null){
 				drawLine(g,
 					position.x + squareSize.width, 
@@ -108,6 +143,8 @@ class Artist {
 		g.dispose()
 		return image
 	}
+	
+	
 	private void drawString(Graphics g, String str, Point position, Dimension squareSize, float offset){
 			g.drawString(
 				str,

@@ -21,7 +21,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 /**
- *
+ * binds the groovy artist to the java panel stuff.
  * @author jappie
  */
 public class MazePanel extends javax.swing.JPanel {
@@ -45,6 +45,18 @@ public class MazePanel extends javax.swing.JPanel {
 	public void render(){
 		artist.render();
 		this.repaint();
+	}
+	
+	public void solveMaze(){
+		Character avatar = new Character();
+		SquareGrid grid = artist.getMazeFactory().getBase();
+		avatar.setWorld(grid);
+		avatar.setLocation(grid.getSquareAt(0, grid.getSize().getHeight()));
+		while(!avatar.isFinished()){
+			avatar.move();
+			artist.render();
+			this.repaint();
+		}
 	}
 	@Override
 	public void paint(Graphics g) {

@@ -24,17 +24,17 @@ package nl.jappieklooster.ISAD2.maze
 class Character {
 	Square location
 	SquareGrid world
-	boolean isFinished = false
+	boolean finished = false
 	
-	private setIsFinished(boolean to){
-		isFinished = to
+	private setFinished(boolean to){
+		finished = to
 	}
 	
 	void move(){
 		location.visited = true
 		// check if the finished square is reached
 		if(world.getSquareAt(9,0) == location){
-			isFinished = true
+			finished = true
 			return
 		}
 		

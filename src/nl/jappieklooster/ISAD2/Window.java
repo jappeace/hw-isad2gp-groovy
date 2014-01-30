@@ -44,6 +44,7 @@ public class Window extends javax.swing.JFrame {
         buttonStartGeneration = new javax.swing.JButton();
         textFieldYAmount = new javax.swing.JTextField();
         textFieldXAmount = new javax.swing.JTextField();
+        ButtonSolve = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +70,13 @@ public class Window extends javax.swing.JFrame {
 
         textFieldXAmount.setText("10");
 
+        ButtonSolve.setText("Solve");
+        ButtonSolve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSolveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,6 +88,8 @@ public class Window extends javax.swing.JFrame {
                 .addComponent(textFieldYAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(buttonStartGeneration)
+                .addGap(18, 18, 18)
+                .addComponent(ButtonSolve)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,7 +99,8 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonStartGeneration)
                     .addComponent(textFieldYAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldXAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldXAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonSolve))
                 .addContainerGap())
         );
 
@@ -133,8 +144,13 @@ public class Window extends javax.swing.JFrame {
 		mazePanel.render();
     }//GEN-LAST:event_buttonStartGenerationActionPerformed
 
+    private void ButtonSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSolveActionPerformed
+        mazePanel.solveMaze();
+    }//GEN-LAST:event_ButtonSolveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonSolve;
     private javax.swing.JButton buttonStartGeneration;
     private javax.swing.JPanel jPanel1;
     private nl.jappieklooster.ISAD2.maze.MazePanel mazePanel;

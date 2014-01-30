@@ -26,6 +26,8 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
  * @author jappie
  */
 class MazeFactory {
+	
+	/** The designer does not understand this unless added before its being used...*/
 	static {
 		/** Make arralist a litle more like python 
 		 * picks a random element or elements specified by the number
