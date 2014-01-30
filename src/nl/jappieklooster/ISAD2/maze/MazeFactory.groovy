@@ -26,6 +26,33 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
  * @author jappie
  */
 class MazeFactory {
+	static {
+		/** Make arralist a litle more like python 
+		 * picks a random element or elements specified by the number
+		 * */
+		ArrayList.metaClass.getRand = { int amount = 0 ->
+			if(amount==0) {
+				return delegate[new Random().nextInt(delegate.size - 1)]
+			} else {
+				def tempList = []
+				def counter = 0
+				while(counter>amount) {
+					tempList.add(delegate[new Random().nextInt(delegate.size - 1)])
+					counter++
+				}
+				return tempList
+			}
+		}
+		/**
+		 * removes a single randm element
+		*/
+		ArrayList.metaClass.removeRand = {
+			def element = delegate.getRand()
+			delegate.remove(element)
+			return element
+		}
+	}
+	
 	SquareGrid base
 	private Random random = new Random()
 	// a bunch of constuctors, because lazy
@@ -132,5 +159,6 @@ class MazeFactory {
 			base.getSquareAt(bottom).top = base.getSquareAt(top)
 		}
 	}
+
 }
 
