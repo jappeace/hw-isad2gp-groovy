@@ -30,23 +30,11 @@ import nl.jappieklooster.Log
 class Square extends AbstractSetNode{
 	Square right
 	Square bottom
+	Square top
+	Square left
 	boolean visited = false
 	Square(){
 		super()
-	}
-	
-	void setRight(Square to){
-		if(right != null){
-			Log.warn "overiding a set right: {0} to {1}",right, to
-		}
-		right = to		
-	}
-		
-	void setBottom(Square to){
-		if(bottom != null){
-			Log.warn "overiding a set bottom: {0} to {1}",bottom, to
-		}
-		bottom = to
 	}
 }
 

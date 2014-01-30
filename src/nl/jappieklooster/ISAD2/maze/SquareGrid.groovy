@@ -126,24 +126,5 @@ class SquareGrid extends DisjointSets {
 			point
 		)
 	}
-	
-	/**
-	* gets the square left to the given one
-	*/
-	Square getLeft(Square off){
-		int targetIndex = (off.index % size.width) -1
-		if(targetIndex < 0){
-			return null
-		}
-		return setnodes[targetIndex]
-	}
-	
-	Square getTop(Square off){
-		int targetIndex = off.index - size.width
-		if(targetIndex < 0){
-			return null
-		}
-		return setnodes[targetIndex]
-	}
 }
 

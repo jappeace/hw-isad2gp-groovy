@@ -77,21 +77,25 @@ class MazeFactory {
 			
 		}
 		
+		Closure bindSqMethod
 		if		(chosenSide == 0){
 			
+			bindSqMethod = getBindSqHorizontal()
 			two.x -= 1
 			
 		}else if(chosenSide == 1){
 			
-
+			bindSqMethod = getBindSqHorizontal()
 			two.x += 1
 			
 		}else if(chosenSide == 2){
 			
+			bindSqMethod = getBindSqVertical()
 			two.y -= 1
 			
 		}else if(chosenSide == 3){
 			
+			bindSqMethod = getBindSqVertical()
 			two.y += 1
 		}
 		
@@ -100,22 +104,29 @@ class MazeFactory {
 		
 		if(sqOne != sqTwo){
 			base.union(sqOne, sqTwo)
-			if		(chosenSide == 0){
+			if		(chosenSide % 2 == 0){
+				
+				bindSqMethod(one, two)
 			
-				base.getSquareAt(two).right = base.getSquareAt(one)
+			}else{
+				
+				bindSqMethod(two, one)
 			
-			}else if(chosenSide == 1){
-			
-				base.getSquareAt(one).right = base.getSquareAt(two)
-			
-			}else if(chosenSide == 2){
-			
-				base.getSquareAt(two).bottom = base.getSquareAt(one)
-			
-			}else if(chosenSide == 3){
-			
-				base.getSquareAt(one).bottom = base.getSquareAt(two)
 			}
+		}
+	}
+	
+	private Closure getBindSqHorizontal(){
+		return { Point right, Point left ->
+			base.getSquareAt(left).right = base.getSquareAt(right)
+			base.getSquareAt(right).left = base.getSquareAt(left)
+		}
+	}
+	
+	private Closure getBindSqVertical(){
+		return { Point bottom, Point top ->
+			base.getSquareAt(top).bottom = base.getSquareAt(bottom)
+			base.getSquareAt(bottom).top = base.getSquareAt(top)
 		}
 	}
 }
