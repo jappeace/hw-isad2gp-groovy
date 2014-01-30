@@ -30,7 +30,7 @@ import nl.jappieklooster.Log
 class Square extends AbstractSetNode{
 	Square right
 	Square bottom
-
+	boolean visited = false
 	Square(){
 		super()
 	}
