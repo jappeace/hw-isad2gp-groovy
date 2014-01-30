@@ -88,7 +88,7 @@ class MazeFactory {
 		Point two = new Point(one)
 		int chosenSide= random.nextInt(4)
 		List<Integer> posibleSides = (0..3).toList()
-		if		(one.x == base.size.width - 1){
+		if(one.x == base.size.width - 1){
 			
 			posibleSides.remove((Object)1)
 			

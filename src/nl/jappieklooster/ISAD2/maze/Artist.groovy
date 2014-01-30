@@ -73,10 +73,10 @@ class Artist {
 			if(square.visited){
 				g.setColor(Color.green)
 				g.fillRect(
-					Math.round(position.x + squareSize.width * 0.1), 
-					Math.round(position.y + squareSize.height* 0.1),
-					Math.round(position.x + squareSize.width * 0.9),
-					Math.round(position.y + squareSize.height* 0.9)
+					(Integer)Math.round(position.x + squareSize.width * 0.1), 
+					(Integer)Math.round(position.y + squareSize.height* 0.1),
+					(Integer)Math.round(position.x + squareSize.width * 0.9),
+					(Integer)Math.round(position.y + squareSize.height* 0.9)
 				)
 			}
 			if(ManagementFactory.runtimeMXBean.inputArguments.toString().indexOf("jdwp") >= 0){
