@@ -53,6 +53,7 @@ public class Starter {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				GroovyInitilizer.initMetaClasses();
 				new Window().setVisible(true);
 			}
 		});

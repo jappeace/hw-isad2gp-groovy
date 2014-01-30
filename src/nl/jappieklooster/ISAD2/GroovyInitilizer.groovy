@@ -15,51 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze
+package nl.jappieklooster.ISAD2
 
 /**
  *
  * @author jappie
  */
-class Character {
-	Square location
-	SquareGrid world
-	boolean isFinished = false
-	
-	private setIsFinished(boolean to){
-		isFinished = to
-	}
-	
-	void move(){
-		location.visited = true
-		// check if the finished square is reached
-		if(world.getSquareAt(9,0) == location){
-			isFinished = true
-			return
-		}
+class GroovyInitilizer {
+	static void initMetaClasses (){
 		
-		Square next = location.left
-		if(step(next)){
-			return
+		/** Make arralist a litle more like python 
+		 * picks a random element or elements specified by the number
+		 * */
+		ArrayList.metaClass.getRand = { int amount = 0 ->
+			if(amount==0) {
+				return delegate[new Random().nextInt(delegate.size - 1)]
+			} else {
+				def tempList = []
+				def counter = 0
+				while(counter>amount) {
+					tempList.add(delegate[new Random().nextInt(delegate.size - 1)])
+					counter++
+				}
+				return tempList
+			}
 		}
-		next = location.top
-		if(step(next)){
-			return
+		/**
+		 * removes a single randm element
+		*/
+		ArrayList.metaClass.removeRand = {
+			def element = delegate.getRand()
+			delegate.remove(element)
+			return element
 		}
-		next = location.right
-		if(step(next)){
-			return
-		}
-		next = location.bottom
-		step(next)
-	}
-	
-	private boolean step(Square to){
-		if(to != null){
-			location = next
-			return true
-		}	
-		return false
 	}
 }
 

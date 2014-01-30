@@ -58,25 +58,28 @@ class MazeFactory {
 		)
 		Point two = new Point(one)
 		int chosenSide= random.nextInt(4)
-		
-		if		(one.x == base.size.width -1){
+		List<Integer> posibleSides = (0..3).toList()
+		if		(one.x == base.size.width - 1){
 			
-			chosenSide = 0
-			
-		}else if(one.x == 0){
-			
-			chosenSide = 1
-			
-		}else if(one.y == base.size.height -1){
-			
-			chosenSide = 2
-			
-		}else if(one.y == 0){
-			
-			chosenSide = 3
+			posibleSides.remove((Object)1)
 			
 		}
-		
+		if(one.x == 0){
+			
+			posibleSides.remove((Object)0)
+			
+		}
+		if(one.y == base.size.height){
+			
+			posibleSides.remove((Object)3)
+			
+		}
+		if(one.y == 0){
+			
+			posibleSides.remove((Object)2)
+			
+		}
+		chosenSide = posibleSides.removeRand()
 		Closure bindSqMethod
 		if		(chosenSide == 0){
 			
