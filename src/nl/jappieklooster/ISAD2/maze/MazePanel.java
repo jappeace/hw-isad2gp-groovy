@@ -48,15 +48,28 @@ public class MazePanel extends javax.swing.JPanel {
 	}
 	
 	public void solveMaze(){
-		Character avatar = new Character();
-		SquareGrid grid = artist.getMazeFactory().getBase();
-		avatar.setWorld(grid);
-		avatar.setLocation(grid.getSquareAt(0, grid.getSize().getHeight()-1));
-		while(!avatar.getFinished()){
-			avatar.move();
-			artist.render();
-			this.repaint();
-		}
+		final MazePanel panel = this;
+		new Thread(
+				new Runnable() {
+					
+					@Override
+					public void run() {
+
+						Character avatar = new Character();
+						SquareGrid grid = artist.getMazeFactory().getBase();
+						avatar.setWorld(grid);
+						avatar.setLocation(grid.getSquareAt(0, grid.getSize().getHeight() - 1));
+						while (!avatar.getFinished()) {
+							avatar.move();
+							artist.render();
+							panel.repaint();
+						}
+
+					}
+
+				}
+		).start();
+
 	}
 	@Override
 	public void paint(Graphics g) {
