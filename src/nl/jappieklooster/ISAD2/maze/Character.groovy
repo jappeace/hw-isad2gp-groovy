@@ -105,5 +105,35 @@ class Character {
 		return true
 		
 	}
+	
+	private boolean tryStepTo(
+		Direction faceDirection, 
+		Direction prefferdOne, 
+		Direction prefferdTwo
+	){
+		if(facing == faceDirection){
+			if(wallSide == Direction.LEFT){
+				next = location.left
+				if(step(next)){
+					facing = Direction.LEFT
+					wallSide = Direction.BOTTOM
+					return true
+				}
+			}else
+			if(wallSide == Direction.RIGHT){
+				next = location.right
+				if(step(next)){
+					facing = Direction.RIGHT
+					wallSide = Direction.BOTTOM
+					return true
+				}				
+			}
+			next = location.getDirection(facing)
+			if(step(next)){
+				return true
+			}
+		}
+		return false
+	}
 }
 
