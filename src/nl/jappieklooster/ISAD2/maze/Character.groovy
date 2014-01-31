@@ -16,7 +16,6 @@
  */
 
 package nl.jappieklooster.ISAD2.maze
- enum Direction {TOP, LEFT, BOTTOM, RIGHT}
 /**
  *
  * @author jappie
@@ -25,7 +24,9 @@ class Character {
 	Square location
 	SquareGrid world
 	boolean finished = false
-	Direction facing
+	Direction facing = Direction.TOP
+	Direction wallSide = Direction.LEFT
+	
 	private setFinished(boolean to){
 		finished = to
 	}
@@ -39,6 +40,22 @@ class Character {
 		}
 		Square next
 		if(facing == Direction.TOP){
+			if(wallSide == Direction.LEFT){
+				next = location.left
+				if(step(next)){
+					facing = Direction.LEFT
+					wallSide = Direction.BOTTOM
+					return
+				}
+			}else
+			if(wallSide == Direction.RIGHT){
+				next = location.right
+				if(step(next)){
+					facing = Direction.RIGHT
+					wallSide = Direction.BOTTOM
+					return
+				}				
+			}
 			next = location.top
 			if(step(next)){
 				return
@@ -82,7 +99,6 @@ class Character {
 	private boolean step(Square to){
 		// no path to walk
 		if(to == null){
-			turn()
 			return false
 		}
 		location = to

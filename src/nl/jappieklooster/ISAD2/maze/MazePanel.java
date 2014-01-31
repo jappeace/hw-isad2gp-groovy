@@ -52,7 +52,7 @@ public class MazePanel extends javax.swing.JPanel {
 		SquareGrid grid = artist.getMazeFactory().getBase();
 		avatar.setWorld(grid);
 		avatar.setLocation(grid.getSquareAt(0, grid.getSize().getHeight()-1));
-		while(!avatar.isFinished()){
+		while(!avatar.getFinished()){
 			avatar.move();
 			artist.render();
 			this.repaint();

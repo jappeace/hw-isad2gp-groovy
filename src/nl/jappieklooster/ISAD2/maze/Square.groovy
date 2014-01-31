@@ -36,5 +36,18 @@ class Square extends AbstractSetNode{
 	Square(){
 		super()
 	}
+	
+	Square getDirection(Direction which){
+		switch(which){
+			case Direction.LEFT:
+				return left
+			case Direction.RIGHT:
+				return right
+			case Direction.BOTTOM:
+				return bottom
+			case Direction.TOP:
+				return top
+		}
+	}
 }
 
