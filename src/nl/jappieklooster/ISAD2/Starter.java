@@ -17,12 +17,14 @@
 
 package nl.jappieklooster.ISAD2;
 
+
+
 /**
  * starts things up (I find this code horrible and this way its not in my way)
  * @author jappie
  */
 public class Starter {
-	
+
 	/**
 	 * @param args the command line arguments
 	 */

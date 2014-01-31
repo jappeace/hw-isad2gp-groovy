@@ -24,6 +24,7 @@ import java.awt.Point
 import java.awt.image.BufferedImage
 import java.awt.Color
 import java.lang.management.ManagementFactory
+import nl.jappieklooster.Envoirement
 /**
  * a class that renders the maze on a java pane
  * @author jappie
@@ -79,7 +80,7 @@ class Artist {
 					(Integer)Math.round(position.y + squareSize.height* 0.9)
 				)
 			}
-			if(ManagementFactory.runtimeMXBean.inputArguments.toString().indexOf("jdwp") >= 0){
+			if(Envoirement.isDebugging){
 				drawString(
 					g, 
 					"    ${square.top}",

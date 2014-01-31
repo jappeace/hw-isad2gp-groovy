@@ -19,7 +19,9 @@ package nl.jappieklooster.ISAD2.maze;
 
 import java.awt.Graphics;
 import java.awt.Image;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import nl.jappieklooster.Envoirement;
 /**
  * binds the groovy artist to the java panel stuff.
  * @author jappie
@@ -63,6 +65,13 @@ public class MazePanel extends javax.swing.JPanel {
 							avatar.move();
 							artist.render();
 							panel.repaint();
+							if(Envoirement.isDebugging){
+								try {
+									Thread.sleep(10);
+								} catch (InterruptedException ex) {
+									Logger.getLogger(MazePanel.class.getName()).log(Level.SEVERE, null, ex);
+								}
+							}
 						}
 
 					}
