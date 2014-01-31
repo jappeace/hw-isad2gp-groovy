@@ -16,6 +16,7 @@
  */
 
 package nl.jappieklooster.ISAD2.maze
+import nl.jappieklooster.Log
 /**
  *
  * @author jappie
@@ -24,9 +25,9 @@ class Character {
 	Square location
 	SquareGrid world
 	boolean finished = false
-	Direction facing = Direction.TOP
-	Direction wallSide = Direction.LEFT
-	
+	private Direction facing = Direction.TOP
+	private Direction wallSide = Direction.LEFT
+	private Square next
 	private setFinished(boolean to){
 		finished = to
 	}
@@ -38,64 +39,24 @@ class Character {
 			finished = true
 			return
 		}
-		Square next
-		if(facing == Direction.TOP){
-			if(wallSide == Direction.LEFT){
-				next = location.left
-				if(step(next)){
-					facing = Direction.LEFT
-					wallSide = Direction.BOTTOM
-					return
-				}
-			}else
-			if(wallSide == Direction.RIGHT){
-				next = location.right
-				if(step(next)){
-					facing = Direction.RIGHT
-					wallSide = Direction.BOTTOM
-					return
-				}				
-			}
-			next = location.top
-			if(step(next)){
-				return
-			}
+		
+		if(isStepping(Direction.TOP)){
+			return
 		}
-		if(facing == Direction.LEFT){
-			next = location.left
-			if(step(next)){
-				return
-			}
+		if(isStepping(Direction.LEFT)){
+			return
 		}
-		if(facing == Direction.BOTTOM){
-			next = location.bottom
-			if(step(next)){
-				return
-			}
+		if(isStepping(Direction.BOTTOM)){
+			return
 		}
-		if(facing == Direction.RIGHT){
-			next = location.right
-			if(step(next)){
-				return
-			}
+		if(isStepping(Direction.RIGHT)){
+			return
 		}
+		// probably reached a dead end... time to turn
+		facing = facing.next()
+		wallSide = wallSide.next()
 	}
-	private void turn(){
-		switch(facing){
-			case Direction.TOP:
-				facing = Direction.LEFT
-				break
-			case Direction.LEFT:
-				facing = Direction.BOTTOM
-				break
-			case Direction.BOTTOM: 
-				facing = Direction.RIGHT
-				break
-			case Direction.RIGHT:
-				facing = Direction.TOP
-				break
-		}
-	}
+
 	private boolean step(Square to){
 		// no path to walk
 		if(to == null){
@@ -106,27 +67,16 @@ class Character {
 		
 	}
 	
-	private boolean tryStepTo(
-		Direction faceDirection, 
-		Direction prefferdOne, 
-		Direction prefferdTwo
-	){
+	private boolean isStepping(Direction faceDirection){
+		Direction prefferdOne = faceDirection.next()
+		Direction prefferdTwo = faceDirection.previous()
+		Direction opposite = faceDirection.next().next()
 		if(facing == faceDirection){
-			if(wallSide == Direction.LEFT){
-				next = location.left
-				if(step(next)){
-					facing = Direction.LEFT
-					wallSide = Direction.BOTTOM
-					return true
-				}
+			if(checkWallGap(prefferdOne, opposite)){
+				return true
 			}else
-			if(wallSide == Direction.RIGHT){
-				next = location.right
-				if(step(next)){
-					facing = Direction.RIGHT
-					wallSide = Direction.BOTTOM
-					return true
-				}				
+			if(checkWallGap(prefferdTwo, opposite)){
+				return true		
 			}
 			next = location.getDirection(facing)
 			if(step(next)){
@@ -134,6 +84,17 @@ class Character {
 			}
 		}
 		return false
+	}
+	
+	private boolean checkWallGap(Direction hand, Direction newHand){
+		if(wallSide == hand){
+			next = location.getDirection(hand)
+			if(step(next)){
+				facing = hand
+				wallSide = newHand
+				return true
+			}
+		}
 	}
 }
 

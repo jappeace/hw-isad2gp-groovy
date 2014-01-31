@@ -146,6 +146,7 @@ public class Window extends javax.swing.JFrame {
 
     private void ButtonSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSolveActionPerformed
         mazePanel.solveMaze();
+		Enum e;
     }//GEN-LAST:event_ButtonSolveActionPerformed
 
 

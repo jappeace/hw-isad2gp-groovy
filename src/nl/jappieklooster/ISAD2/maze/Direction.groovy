@@ -23,4 +23,13 @@ package nl.jappieklooster.ISAD2.maze;
  */
 enum Direction {
 	TOP, LEFT, BOTTOM, RIGHT
+	Direction next() {
+        Direction[] vals = Direction.values();
+        return vals[(this.ordinal() + 1) % vals.length];
+    }
+
+    Direction previous() {
+        Direction[] vals = Direction.values();
+        return vals[(this.ordinal() - 1 + vals.length) % vals.length];
+    }
 }
