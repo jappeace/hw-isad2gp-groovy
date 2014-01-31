@@ -82,21 +82,21 @@ class Artist {
 			if(ManagementFactory.runtimeMXBean.inputArguments.toString().indexOf("jdwp") >= 0){
 				drawString(
 					g, 
-					"        ${square.top}",
+					"    ${square.top}",
 					position, 
 					squareSize, 
 					0.3
 				)
 				drawString(
 					g,
-					"${square.left} <- ${square} -> ${square.right}", 
+					"${square.left} ${square} ${square.right}", 
 					position, 
 					squareSize, 
 					0.5
 				)
 				drawString(
 					g,
-					"        ${square.bottom}", 
+					"    ${square.bottom}", 
 					position, 
 					squareSize, 
 					0.7

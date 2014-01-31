@@ -52,9 +52,8 @@ class Character {
 		if(isStepping(Direction.RIGHT)){
 			return
 		}
-		// probably reached a dead end... time to turn
-		facing = facing.next()
-		wallSide = wallSide.next()
+		
+		
 	}
 
 	private boolean step(Square to){
@@ -68,33 +67,32 @@ class Character {
 	}
 	
 	private boolean isStepping(Direction faceDirection){
-		Direction prefferdOne = faceDirection.next()
-		Direction prefferdTwo = faceDirection.previous()
 		Direction opposite = faceDirection.next().next()
 		if(facing == faceDirection){
-			if(checkWallGap(prefferdOne, opposite)){
+			if(checkWallGap(opposite)){
 				return true
-			}else
-			if(checkWallGap(prefferdTwo, opposite)){
-				return true		
 			}
 			next = location.getDirection(facing)
 			if(step(next)){
 				return true
 			}
+			// probably reached a dead end... time to turn
+			wallSide = facing
+			facing = wallSide.next()
+			return true
 		}
 		return false
 	}
 	
-	private boolean checkWallGap(Direction hand, Direction newHand){
-		if(wallSide == hand){
-			next = location.getDirection(hand)
-			if(step(next)){
-				facing = hand
-				wallSide = newHand
-				return true
-			}
+	private boolean checkWallGap(Direction newHand){
+		next = location.getDirection(wallSide)
+		if(step(next)){
+			facing = wallSide
+			wallSide = newHand
+			return true
 		}
+		return false
+		
 	}
 }
 

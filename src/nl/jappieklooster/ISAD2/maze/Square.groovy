@@ -49,5 +49,9 @@ class Square extends AbstractSetNode{
 				return top
 		}
 	}
+	
+	String toString(){
+		return super.toString()
+	}
 }
 
