@@ -19,7 +19,6 @@ package nl.jappieklooster.ISAD2.maze
 
 import java.awt.Point
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
-import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 
 /**
  *
@@ -57,10 +56,7 @@ class MazeFactory {
 	
 	SquareGrid base
 	private Random random = new Random()
-	// a bunch of constuctors, because lazy
-	MazeFactory(){
-		this(new SquareGrid())
-	}
+	
 	MazeFactory(int x, int y){
 		this(new SquareGrid(x, y))
 	}
@@ -70,11 +66,7 @@ class MazeFactory {
 
 	SquareGrid createMaze(){
 		int targetIndex = base.size.width * base.size.height * -1
-		while(
-			(
-				(Square) base.find(new Point(0,0))
-			).parent.index != targetIndex
-		){
+		while(base.findIndex(new Point(0,0)) != targetIndex){
 			algoritem();
 		}
 
@@ -131,8 +123,8 @@ class MazeFactory {
 			two.y += 1
 		}
 		
-		Square sqOne = (Square) base.find(one)
-		Square sqTwo = (Square) base.find(two)	
+		int sqOne = base.findIndex(one)
+		int sqTwo = base.findIndex(two)	
 		
 		if(sqOne != sqTwo){
 			base.union(sqOne, sqTwo)

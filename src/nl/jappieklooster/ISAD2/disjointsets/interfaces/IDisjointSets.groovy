@@ -23,8 +23,8 @@ package nl.jappieklooster.ISAD2.disjointsets.interfaces
  */
 interface IDisjointSets {
 	
-	ISetNode find(ISetNode from)
-	void union(ISetNode one, ISetNode two)
+	int find(int from)
+	void union(int one, int two)
 	
 }
 

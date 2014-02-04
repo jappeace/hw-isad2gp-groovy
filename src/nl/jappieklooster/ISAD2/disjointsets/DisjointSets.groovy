@@ -18,47 +18,51 @@
 package nl.jappieklooster.ISAD2.disjointsets
 
 import nl.jappieklooster.ISAD2.disjointsets.interfaces.IDisjointSets
-import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 
 /**
  *
  * @author jappie
  */
 class DisjointSets implements IDisjointSets{
-	ISetNode[] setnodes
-	
+	int[] _sets
+	public DisjointSets(int n){
+		_sets = new int[n]
+		(0..(n-1)).each{ i ->
+			_sets[i] = -1
+		}
+	}
 	/**
 	* does the recursive call and compresses the tree
 	*/
-	ISetNode find(ISetNode from){
-		ISetNode target = setnodes[from.index]
+	int find(int from){
+		int target = _sets[from]
 		if(isRoot(target)){
-			return target
+			return from
 		}else{
-			ISetNode root = find(target.parent)
-			target.parent = root
+			int root = find(target)
+			_sets[from] = root
 			return root
 		}
 	}
 	
-	void union(ISetNode one, ISetNode two){
-		if(!isRoot(one)){
+	void union(int one, int two){
+		if(!isRoot(_sets[one])){
 			one = find(one)
 		}
-		if(!isRoot(two)){
+		if(!isRoot(_sets[two])){
 			two = find(two)
 		}
-		if(one.parent.index < two.parent.index){
-			one.parent.index += two.parent.index
-			two.parent = one
+		if(_sets[one] < _sets[two]){
+			_sets[one] += _sets[two]
+			_sets[two] = _sets[one]
 		}else{
-			two.parent.index += one.parent.index
-			one.parent = two			
+			_sets[two] += _sets[one]
+			_sets[one] = _sets[two]		
 		}
 	}
 	
-	private boolean isRoot(ISetNode node){
-		node.parent.index < 0
+	private boolean isRoot(int node){
+		_sets[node] < 0
 	}
 }
 

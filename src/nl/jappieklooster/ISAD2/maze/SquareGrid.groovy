@@ -20,50 +20,52 @@ package nl.jappieklooster.ISAD2.maze
 import java.awt.Dimension
 import java.awt.Point
 import nl.jappieklooster.ISAD2.disjointsets.DisjointSets
-import nl.jappieklooster.ISAD2.disjointsets.interfaces.ISetNode
 import nl.jappieklooster.Log
 /**
  * A class for easaly handaling a grid as a one dimensional array...
  * @author jappie
  */
-class SquareGrid extends DisjointSets {
+class SquareGrid{
 	Dimension size
 	static final int DEFAULT_WIDTH = 20
 	static final int DEFAULT_HEIGHT = 20
+	private Square[] _squares;
+	private DisjointSets _sets;
 	
 	public SquareGrid(){
-		this(DEFAULT_WIDTH,DEFAULT_HEIGHT)
+		this(DEFAULT_WIDTH, DEFAULT_HEIGHT)
 	}
 	public SquareGrid(int width, int height){
-		super()
 		size = new Dimension(width, height)
 		int product = width*height
+
 		if(product < 0){
-			throw new Exception("Expecting positive integers to create checkboard")
+			throw new Exception("Expecting positive integers to create grid")
 		}
-		setnodes = new ISetNode[product+1]
 		
+		_squares = new Square[product];
+		_sets = new DisjointSets(product);		
 		// fil in the squares
-		(0..product).each{ i ->
-			setnodes[i] = new Square()
-			setnodes[i].index = i
+		(0..(product-1)).each{ i ->
+			_squares[i] = new Square()
 		}	
 	}
+
 	/**
 	 * translates the 1d array to the 2d board
 	 * @return the found square or null on nothing
 	 */
 	Square getSquareAt(Integer x, Integer y){
-		int targetIndex = x + y*size.width
+		int targetIndex = calculateIndex(x, y)
 		if( targetIndex < 0){
 			Log.warn "trying to get a negative index with x {0} and y {1}", x, y
 			return null
 		}
-		if( targetIndex >= setnodes.length){
+		if( targetIndex >= _squares.length){
 			Log.warn "trying to get a index out of bounds with x {0} and y {1}", x, y
 			return null
 		}
-		return (Square) setnodes[targetIndex]
+		return _squares[targetIndex]
 	}
 	/**
 	* round and truncates the double value to make it compatible with the int type function.
@@ -79,13 +81,25 @@ class SquareGrid extends DisjointSets {
 	Square getSquareAt(Point p){
 		getSquareAt(p.x, p.y)
 	}
+	private int calculateIndex(Integer x, Integer y){
+		x + y*size.width
+	}
 	/**
+	 * TODO: change to findsquare
 	 * an easier interface on top of the primitive find
 	 */
-	ISetNode find(Point p){
-		find(getSquareAt(p.x, p.y))
+	Square find(Point p){
+		_squares[findIndex(p)]
 	}
-	
+	/**
+	 * TODO: change to find and implement IDistjointsets
+	 */
+	int findIndex(Point p){
+		_sets.find(calculateIndex((Integer) Math.round(p.x), (Integer) Math.round(p.y)))
+	}
+	void union(int one, int two){
+		_sets.union(one, two)
+	}
 	/**
 	 * walk trough all elements and execute the closure
 	 */
