@@ -25,7 +25,10 @@ import nl.jappieklooster.ISAD2.disjointsets.interfaces.IDisjointSets
  */
 class DisjointSets implements IDisjointSets{
 	int[] _sets
-	public DisjointSets(int n){
+	int getValueAt(int index){
+		return _sets[index]
+	}
+	DisjointSets(int n){
 		_sets = new int[n]
 		(0..(n-1)).each{ i ->
 			_sets[i] = -1
@@ -36,7 +39,7 @@ class DisjointSets implements IDisjointSets{
 	*/
 	int find(int from){
 		int target = _sets[from]
-		if(isRoot(target)){
+		if(isRoot(from)){
 			return from
 		}else{
 			int root = find(target)
@@ -46,18 +49,18 @@ class DisjointSets implements IDisjointSets{
 	}
 	
 	void union(int one, int two){
-		if(!isRoot(_sets[one])){
+		if(!isRoot(one)){
 			one = find(one)
 		}
-		if(!isRoot(_sets[two])){
+		if(!isRoot(two)){
 			two = find(two)
 		}
 		if(_sets[one] < _sets[two]){
 			_sets[one] += _sets[two]
-			_sets[two] = _sets[one]
+			_sets[two] = one
 		}else{
 			_sets[two] += _sets[one]
-			_sets[one] = _sets[two]		
+			_sets[one] = two		
 		}
 	}
 	

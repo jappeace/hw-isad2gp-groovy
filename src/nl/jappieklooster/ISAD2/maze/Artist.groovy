@@ -74,10 +74,10 @@ class Artist {
 			if(square.visited){
 				g.setColor(Color.green)
 				g.fillRect(
-					(Integer)Math.round(position.x + squareSize.width * 0.1), 
-					(Integer)Math.round(position.y + squareSize.height* 0.1),
-					(Integer)Math.round(position.x + squareSize.width * 0.9),
-					(Integer)Math.round(position.y + squareSize.height* 0.9)
+					(Integer)Math.round(position.x - squareSize.width), 
+					(Integer)Math.round(position.y - squareSize.height),
+					(Integer)Math.round(position.x),
+					(Integer)Math.round(position.y)
 				)
 			}
 			if(Envoirement.isDebugging){

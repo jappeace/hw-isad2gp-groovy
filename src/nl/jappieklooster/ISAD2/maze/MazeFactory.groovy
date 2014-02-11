@@ -63,10 +63,10 @@ class MazeFactory {
 	MazeFactory(SquareGrid sg){
 		base = sg
 	}
-
 	SquareGrid createMaze(){
+		
 		int targetIndex = base.size.width * base.size.height * -1
-		while(base.findIndex(new Point(0,0)) != targetIndex){
+		while(base.getValueAt(base.findIndex(new Point(0,0))) != targetIndex){
 			algoritem();
 		}
 

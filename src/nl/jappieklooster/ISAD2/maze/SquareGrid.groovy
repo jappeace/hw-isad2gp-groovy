@@ -100,6 +100,10 @@ class SquareGrid{
 	void union(int one, int two){
 		_sets.union(one, two)
 	}
+	
+	int getValueAt(int index){
+		return _sets.getValueAt(index)
+	}
 	/**
 	 * walk trough all elements and execute the closure
 	 */
