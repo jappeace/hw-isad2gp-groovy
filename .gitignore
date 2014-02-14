@@ -1,6 +1,17 @@
+#java I think
 build*
 dist
 manifest.mf
+
+#netbeans
 nbproject
+
+# vim
 *.swp
 *.swo
+
+# eclipse
+.project
+.classpath
+.settings/*
+bin
