@@ -15,8 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze
+package nl.jappieklooster.ISAD2.maze.solving
 import nl.jappieklooster.Log
+import nl.jappieklooster.ISAD2.maze.generation.Square
+import nl.jappieklooster.ISAD2.maze.generation.SquareGrid
 /**
  *
  * @author jappie

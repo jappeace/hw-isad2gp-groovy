@@ -15,13 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze;
+package nl.jappieklooster.ISAD2.maze.rendering;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import nl.jappieklooster.Envoirement;
+import nl.jappieklooster.ISAD2.maze.generation.MazeFactory;
+import nl.jappieklooster.ISAD2.maze.generation.SquareGrid;
+import nl.jappieklooster.ISAD2.maze.solving.Character;
 /**
  * binds the groovy artist to the java panel stuff.
  * @author jappie

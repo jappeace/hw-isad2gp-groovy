@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze
+package nl.jappieklooster.ISAD2.maze.generation
 
-import nl.jappieklooster.ISAD2.disjointsets.AbstractSetNode
 import nl.jappieklooster.Log
+import nl.jappieklooster.ISAD2.maze.solving.Direction
 /**
  * represents a square on the gird.
  * if the right and bottom square are null it means there is an edge between them.
@@ -27,7 +27,7 @@ import nl.jappieklooster.Log
  * else
  * @author jappie
  */
-class Square extends AbstractSetNode{
+class Square{
 	Square right
 	Square bottom
 	Square top

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze
+package nl.jappieklooster.ISAD2.maze.rendering
 
 import java.awt.Dimension
 import java.awt.Graphics
@@ -25,6 +25,7 @@ import java.awt.image.BufferedImage
 import java.awt.Color
 import java.lang.management.ManagementFactory
 import nl.jappieklooster.Envoirement
+import nl.jappieklooster.ISAD2.maze.generation.*
 /**
  * a class that renders the maze on a java pane
  * @author jappie

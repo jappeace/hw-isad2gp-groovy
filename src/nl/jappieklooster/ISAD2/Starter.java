@@ -17,10 +17,10 @@
 
 package nl.jappieklooster.ISAD2;
 
-
+import javax.swing.JFrame;
 
 /**
- * starts things up (I find this code horrible and this way its not in my way)
+ * decides what to start up, based on the args given
  * @author jappie
  */
 public class Starter {
@@ -29,34 +29,11 @@ public class Starter {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		JFrame window = null;
+		if(args[0] == null || args[0].equals("maze")){
+			window = new nl.jappieklooster.ISAD2.maze.rendering.Window();
 		}
-        //</editor-fold>
-
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new Window().setVisible(true);
-			}
-		});
+        window.setVisible(true);
 	}
 }

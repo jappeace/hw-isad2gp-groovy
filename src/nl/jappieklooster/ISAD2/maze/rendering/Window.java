@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package nl.jappieklooster.ISAD2;
+package nl.jappieklooster.ISAD2.maze.rendering;
 
 import nl.jappieklooster.Log;
 
@@ -39,7 +39,7 @@ public class Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mazePanel = new nl.jappieklooster.ISAD2.maze.MazePanel();
+        mazePanel = new MazePanel();
         jPanel1 = new javax.swing.JPanel();
         buttonStartGeneration = new javax.swing.JButton();
         textFieldYAmount = new javax.swing.JTextField();
@@ -154,7 +154,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton ButtonSolve;
     private javax.swing.JButton buttonStartGeneration;
     private javax.swing.JPanel jPanel1;
-    private nl.jappieklooster.ISAD2.maze.MazePanel mazePanel;
+    private MazePanel mazePanel;
     private javax.swing.JTextField textFieldXAmount;
     private javax.swing.JTextField textFieldYAmount;
     // End of variables declaration//GEN-END:variables

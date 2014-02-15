@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package nl.jappieklooster.ISAD2.maze;
+package nl.jappieklooster.ISAD2.maze.solving
 
 /**
  *
