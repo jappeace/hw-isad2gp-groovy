@@ -29,6 +29,7 @@ public class Window extends javax.swing.JFrame {
 	 */
 	public Window() {
 		initComponents();
+		mazePanel.render();
 	}
 
 	/**

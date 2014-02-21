@@ -15,3 +15,7 @@ nbproject
 .classpath
 .settings/*
 bin
+
+# archives...
+*.zip
+*.jar

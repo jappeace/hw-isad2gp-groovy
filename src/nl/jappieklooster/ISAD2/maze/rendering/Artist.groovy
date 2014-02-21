@@ -25,25 +25,22 @@ import java.awt.image.BufferedImage
 import java.awt.Color
 import java.lang.management.ManagementFactory
 import nl.jappieklooster.Envoirement
+import nl.jappieklooster.ISAD2.AbstractArtist
 import nl.jappieklooster.ISAD2.maze.generation.*
 /**
  * a class that renders the maze on a java pane
  * @author jappie
  */
-class Artist {
-	private BufferedImage image
+class Artist extends AbstractArtist{
 	MazeFactory mazeFactory
-	MazePanel canvas
 	private static final int BAD_CANVAS_DIMENSION_CORRECTION = 500
 	public Artist(){
 		super()
 	}
-	
-	Image getImage(){
-		return image
-	}
 
+	@Override
 	Image render(){
+		super.render();
 		Dimension squareSize = new Dimension(0,0)
 		SquareGrid subject = mazeFactory.createMaze()
 		
@@ -58,7 +55,6 @@ class Artist {
 		squareSize.width = Math.round(correctedCanvasSize.width / subject.size.width) 
 		squareSize.height = Math.round(correctedCanvasSize.height / subject.size.height)
 		
-		image = new BufferedImage(canvas.width, canvas.height, BufferedImage.TYPE_INT_ARGB)
 		Graphics g = image.graphics
 		g.setColor(Color.black)
 
@@ -75,10 +71,10 @@ class Artist {
 			if(square.visited){
 				g.setColor(Color.green)
 				g.fillRect(
-					(Integer)Math.round(position.x - squareSize.width), 
-					(Integer)Math.round(position.y - squareSize.height),
-					(Integer)Math.round(position.x),
-					(Integer)Math.round(position.y)
+					(Integer)Math.round(position.x), 
+					(Integer)Math.round(position.y),
+					(Integer)Math.round(squareSize.width),
+					(Integer)Math.round(squareSize.height)
 				)
 			}
 			if(Envoirement.isDebugging){

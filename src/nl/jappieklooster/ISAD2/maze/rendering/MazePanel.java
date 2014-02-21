@@ -37,13 +37,13 @@ public class MazePanel extends javax.swing.JPanel {
 	 */
 	@SuppressWarnings("LeakingThisInConstructor")
 	public MazePanel() {
+		super();
 		initComponents();
 		
 		// tie the groovy code into java
 		artist = new Artist();
 		artist.setMazeFactory(new MazeFactory(10, 10));
 		artist.setCanvas(this);
-		artist.render();
 	}
 	public void setGridSize(int x, int y){
 		artist.setMazeFactory(new MazeFactory(x, y));

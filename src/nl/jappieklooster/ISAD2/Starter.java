@@ -17,23 +17,39 @@
 
 package nl.jappieklooster.ISAD2;
 
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 
 /**
  * decides what to start up, based on the args given
  * @author jappie
  */
-public class Starter {
+public class Starter implements Runnable {
 
+	public static void main(String args[]) {
+		Starter s = new Starter();
+		s._args = args;
+		EventQueue.invokeLater(s);
+	}
+
+
+	private String[] _args;
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
-		JFrame window = null;
-		if(args[0] == null || args[0].equals("maze")){
+
+	@Override
+	public void run() {
+        JFrame window = null;
+
+		if(_args.length == 0 || _args[0].equals("maze")){
 			window = new nl.jappieklooster.ISAD2.maze.rendering.Window();
+		}else if(_args[0].equals("point")){
+			window = new nl.jappieklooster.ISAD2.points.rendering.Window();
 		}
 		/* Create and display the form */
-        window.setVisible(true);
+        window.setVisible(true);	// TODO Auto-generated method stub
+		
 	}
 }
