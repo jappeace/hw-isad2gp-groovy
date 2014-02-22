@@ -7,7 +7,10 @@ import nl.jappieklooster.ISAD2.points.structs.PointD
 
 class DivideAndConquerPointSolver implements ClosePointSolver{
 	Comparator<PointD>[] comparators = [new PointXComperator(), new PointYComperator()]
+
 	private final BruteClosePointSolver bruteSolver = new BruteClosePointSolver()
+	// below this number use brute force
+	private static final int BelowUseBrute = 3
 	Line solve(PointD[] points){
 		return recursiveSolve(points, 0)
 	}
@@ -21,7 +24,7 @@ class DivideAndConquerPointSolver implements ClosePointSolver{
 		if(points.length < 3){
 			return new Line(points[0], points[1])
 		}
-		if(points.length == 3){
+		if(points.length <= BelowUseBrute){
 			return bruteSolver.solve(points)
 		}
 		// divide into a left and right list
