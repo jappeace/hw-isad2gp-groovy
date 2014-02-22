@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 import nl.jappieklooster.ISAD2.points.strategies.BruteClosePointSolver;
+import nl.jappieklooster.ISAD2.points.strategies.DivideAndConquerPointSolver;
 
 import javax.swing.JButton;
 
@@ -65,6 +66,8 @@ public class Window extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
+				graphPanel.getArtist().setSolver(new DivideAndConquerPointSolver());
+				redraw();
 			}
 		});
 		btnGenerateAndDevide.setBounds(444, 786, 244, 25);

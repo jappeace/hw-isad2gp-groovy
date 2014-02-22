@@ -9,12 +9,15 @@ class DivideAndConquerPointSolver implements ClosePointSolver{
 	Comparator<PointD>[] comparators = [new PointXComperator(), new PointYComperator()]
 	private final BruteClosePointSolver bruteSolver = new BruteClosePointSolver()
 	Line solve(PointD[] points){
-		
-		return shortCandidate
+		return recursiveSolve(points, 0)
 	}
 	
 	Line recursiveSolve(PointD[] points, int xory){
+
 		// check for base case
+		if(points == null){
+			return Line.createLongestLine()
+		}
 		if(points.length < 3){
 			return new Line(points[0], points[1])
 		}
@@ -26,25 +29,33 @@ class DivideAndConquerPointSolver implements ClosePointSolver{
 		Arrays.sort(points, comparators[xory])
 		
 		// calculate the closest points left and right (or top and bottom depending on orientation in xory) using 2 recursive calls
-		PointD[][] fracturedPoints = points.collate((int) ((points.length / 2).trunc() + 1))
-		Line one = recursiveSolve(fracturedPoints[0], xory)
-		Line two = recursiveSolve(fracturedPoints[1], xory)
+		List<List<PointD>> fracturedPoints = points.toList().collate((int) ((points.length / 2)))
+		Line one = recursiveSolve((PointD[])fracturedPoints[0].toArray(), xory)
+		Line two = recursiveSolve((PointD[])fracturedPoints[1].toArray(), xory)
 		// is left shorter or right? Calculate delta.
 		Line shortest = one.length < two.length ? one : two
 
 		// calculate strip
-		double strip = Math.sqrt((shortest.one.y - shortest.two.y) ** 2)
+		PointD[] stripPoints
 		if(xory == 0){
 			//x
-			strip = Math.sqrt((shortest.one.x - shortest.two.x) ** 2)
+			double strip = Math.sqrt((shortest.one.x - shortest.two.x) ** 2)
+			double width = points[points.length - 1].x
+			double startX = width / 2 - strip / 2
+			double endX   = width / 2 - strip / 2
+			// find the closest points in the strip
+			stripPoints = points.find{ startX >= it.x && endX <= it.x}
+		}else{
+            double strip = Math.sqrt((shortest.one.y - shortest.two.y) ** 2)
+			double height = points[points.length - 1].y
+			double startY = height / 2 - strip / 2
+			double endY   = height / 2 - strip / 2
+			// find the closest points in the strip
+			stripPoints = points.find{ startY >= it.y && endY <= it.y}
 		}
-		
-		double width = points[points.length - 1].x
-		double startX = width / 2 - strip / 2
-		double endX   = width / 2 - strip / 2
-		// find the closest points in the strip
-		PointD[] stripPoints = points.find{ startX >= it.x && endX <= it.x}
-		
+
 		// find the final result
+		Line stripLine = recursiveSolve(stripPoints, xory)
+		return shortest.length < stripLine.length ? shortest : stripLine
 	}
 }

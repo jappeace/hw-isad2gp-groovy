@@ -14,7 +14,7 @@ class BruteClosePointSolver implements ClosePointSolver{
 			return new Line(points[0], poinst[0])
 		}
 		// longest possible line (for memory available)
-		Line shortCandidate = new Line(new PointD(Double.MAX_VALUE, Double.MAX_VALUE), new PointD(Double.MIN_VALUE, Double.MIN_VALUE))
+		Line shortCandidate = Line.createLongestLine()
 		
 		points.each{ PointD candidate ->
 			Line consideration = findShortest(candidate, points)

@@ -14,4 +14,8 @@ class Line {
 	boolean startOrEndEquals(PointD item){
 		one == item || two == item
 	}
+	
+	static Line createLongestLine(){
+		new Line(new PointD(Double.MAX_VALUE, Double.MAX_VALUE), new PointD(Double.MIN_VALUE, Double.MIN_VALUE))
+	}
 }
