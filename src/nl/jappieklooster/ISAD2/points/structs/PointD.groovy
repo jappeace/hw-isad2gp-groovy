@@ -5,12 +5,19 @@ class PointD {
 	double x
 	double y
 	
-	PointD calcClosest(PointD one, PointD two){
-		
-		if(new Line(this, one).getLength() < new Line(this, two).getLength()){
-			return one
-		}else{
-			return two
+	PointD(double x, double y){
+		this.x = x
+		this.y = y
+	}
+	@Override
+	boolean equals(Object to){
+		if(!(to instanceof PointD)){
+			return false
 		}
+		PointD target = (PointD) to
+		if(to.is(this)){
+			return true
+		}
+		return target.x == this.x && target.y == this.y
 	}
 }

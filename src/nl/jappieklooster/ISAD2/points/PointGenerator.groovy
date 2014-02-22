@@ -1,15 +1,22 @@
 package nl.jappieklooster.ISAD2.points
+import java.awt.Dimension
 import nl.jappieklooster.ISAD2.points.structs.PointD
 class PointGenerator {
 	PointD[] points
-	int width = 100
-	int height = 100
-	Random r = new Random();
+	Random random = new Random();
+	Dimension limit
 
-	void startGeneration(int amount){
+	PointGenerator(Dimension limit){
+		this.limit = limit	
+	}
+	void startGeneration(int amount, Closure onCreation = null){
 			
-		(0..amount).each {
-			points[it] = new PointD(r.nextDouble() % width, r.nextDouble() % height);
+		points = new PointD[amount]
+		(0..(amount -1)).each {
+			points[it] = new PointD(random.nextDouble() * limit.width, random.nextDouble() * limit.height);
+			if(onCreation){
+                onCreation(it, points[it])
+			}
 		}
 	}
 	
