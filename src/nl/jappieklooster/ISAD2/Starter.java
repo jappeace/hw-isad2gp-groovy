@@ -17,6 +17,7 @@
 
 package nl.jappieklooster.ISAD2;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,6 +48,8 @@ public class Starter implements Runnable {
 			window = new nl.jappieklooster.ISAD2.maze.rendering.Window();
 		}else if(_args[0].equals("point")){
 			window = new nl.jappieklooster.ISAD2.points.rendering.Window();
+		}else if (_args[0].equals("compress")){
+			window = nl.jappieklooster.ISAD2.compression.rendering.Window.createWindow();
 		}
 		/* Create and display the form */
         window.setVisible(true);	// TODO Auto-generated method stub
