@@ -13,6 +13,7 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class Window extends JFrame {
 
@@ -45,7 +46,10 @@ public class Window extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				JFileChooser d = new JFileChooser();
 				d.showOpenDialog(result);
-				System.out.println(d.getSelectedFile().getPath());
+				File f = d.getSelectedFile();
+				if (f != null){
+				System.out.println(f.getPath());
+				}
 			}
 		});
 		
