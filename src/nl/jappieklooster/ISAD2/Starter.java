@@ -50,6 +50,8 @@ public class Starter implements Runnable {
 			window = new nl.jappieklooster.ISAD2.points.rendering.Window();
 		}else if (_args[0].equals("compress")){
 			window = nl.jappieklooster.ISAD2.compression.rendering.Window.createWindow();
+		}else if (_args[0].equals("backtrack")){
+			window = new nl.jappieklooster.ISAD2.backtracking.rendering.Window();
 		}
 		/* Create and display the form */
         window.setVisible(true);	// TODO Auto-generated method stub
