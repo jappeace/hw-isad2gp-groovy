@@ -21,7 +21,7 @@ class Graph {
 		int nodeCount = width*height
 
 		(0..(nodeCount-1)).each{
-			nodes[it] = new Node(new Point(it, (int) (it/width)))
+			nodes[it] = new Node(new Point(it % width, (int) (it/width)))
 		}
 	}
 	/**
