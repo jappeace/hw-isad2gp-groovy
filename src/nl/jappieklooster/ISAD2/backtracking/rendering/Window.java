@@ -17,11 +17,11 @@ public class Window extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JButton btnLongestPath = new JButton("Longest path");
-		btnLongestPath.setBounds(125, 338, 149, 25);
+		btnLongestPath.setBounds(308, 514, 149, 25);
 		getContentPane().add(btnLongestPath);
 		
 		GraphPanel panel = new GraphPanel();
-		panel.setBounds(38, 38, 432, 288);
+		panel.setBounds(38, 38, 822, 404);
 		getContentPane().add(panel);
 		panel.makeGraph();
 

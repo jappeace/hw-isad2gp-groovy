@@ -13,7 +13,6 @@ import nl.jappieklooster.Log;
 class Artist extends AbstractArtist{
 
 	static final int nodeSize = 30
-	static final int nodeOffset = 2 
 	private Graph graph
 	@Override
 	Image render(){
@@ -25,7 +24,7 @@ class Artist extends AbstractArtist{
 
 			Vector2D nodeTransPos = translatePosition(node.position)
 			node.attached.each{
-				//g.drawLine(nod, nodeOffset, nodeOffset, nodeOffset)
+				g.drawLine(nodeTransPos + new Vector2D(nodeSize/2), translatePosition(it.position) + new Vector2D(nodeSize/2))
 			}
 		
 			g.fillOval(nodeTransPos.x , nodeTransPos.y,  nodeSize, nodeSize)
