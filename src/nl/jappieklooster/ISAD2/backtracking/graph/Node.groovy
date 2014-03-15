@@ -1,6 +1,7 @@
 package nl.jappieklooster.ISAD2.backtracking.graph
 
 import java.awt.Point
+import nl.jappieklooster.vector.Vector2D
 
 class Node {
 

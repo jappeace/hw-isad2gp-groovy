@@ -6,26 +6,36 @@ import java.awt.Color;
 
 import nl.jappieklooster.ISAD2.AbstractArtist
 import nl.jappieklooster.ISAD2.backtracking.graph.Graph;
+import nl.jappieklooster.ISAD2.backtracking.graph.Node;
+import nl.jappieklooster.vector.Vector2D
 import nl.jappieklooster.Log;
 
 class Artist extends AbstractArtist{
 
 	static final int nodeSize = 30
-	static final int nodeOffset = 8 
+	static final int nodeOffset = 2 
 	private Graph graph
 	@Override
 	Image render(){
 		super.render()
 		graph = Graph.createGraph()
 		Graphics g = image.graphics
-		int dotCorrection = image.width / (graph.width * nodeSize)
 		g.setColor(Color.RED)
-		graph.nodes.each{
+		graph.nodes.each{Node node ->
 
-			g.fillOval(it.position.x * nodeSize, it.position.y * nodeSize,  nodeSize - nodeOffset, nodeSize - nodeOffset)
-			Log.debug("printing node: {0}", it.position)
+			Vector2D nodeTransPos = translatePosition(node.position)
+			node.attached.each{
+				//g.drawLine(nod, nodeOffset, nodeOffset, nodeOffset)
+			}
+		
+			g.fillOval(nodeTransPos.x , nodeTransPos.y,  nodeSize, nodeSize)
 
 		}
 		return image
+	}
+	Vector2D translatePosition(Vector2D position){
+		return (
+			new Vector2D(image.width, image.height) / graph.size
+        ) * position
 	}
 }

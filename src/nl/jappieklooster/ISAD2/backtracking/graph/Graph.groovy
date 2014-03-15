@@ -1,6 +1,7 @@
 package nl.jappieklooster.ISAD2.backtracking.graph
 
 import java.awt.Point
+import nl.jappieklooster.vector.Vector2D
 
 class Graph {
 
@@ -11,17 +12,15 @@ class Graph {
 		}
 	}
 	List<Node> nodes
-	double width
-	double height
+	Vector2D size
 	
 	Graph(int width, int height){
 		nodes = new ArrayList<Node>()
-		this.width = width
-		this.height = height
+		size = new Vector2D(width, height)
 		int nodeCount = width*height
 
 		(0..(nodeCount-1)).each{
-			nodes[it] = new Node(new Point(it % width, (int) (it/width)))
+			nodes[it] = new Node(new Vector2D(it % width, (int) (it/width)))
 		}
 	}
 	/**
@@ -31,8 +30,8 @@ class Graph {
 	 */
 	List<Node> getAt(Integer x){
 		def resultingCollumn = new ArrayList<Node>()
-		(0..(height-1)).each{
-			resultingCollumn.add(nodes[x + it*width])
+		(0..(size.y-1)).each{
+			resultingCollumn.add(nodes[x + it*size.x])
 		}
 		return resultingCollumn
 	}
