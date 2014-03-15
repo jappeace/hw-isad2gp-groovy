@@ -40,6 +40,11 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		// this class only contains primitives, so changing anything is unecisary, as specified in documentation
 		return super.clone();
 	}
+
+	@Override
+	String toString(){
+		return "(" + x + ", " + y + ")"
+	}
 	///////// aritmatics
 	@Override
 	Vector2D plus(Vector2D rhs){
@@ -112,53 +117,6 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 			+this.y
 		)
 	}
-
-	//////// bitwise magick
-	@Override
-	Vector2D or(Vector2D rhs){
-		new Vector2D(
-			this.x | rhs.x,
-			this.y | rhs.y
-		)
-	}
-	@Override
-	Vector2D and(Vector2D rhs){
-		new Vector2D(
-			this.x & rhs.x,
-			this.y & rhs.y
-		)
-	}
-	@Override
-	Vector2D xor(Vector2D rhs){
-		new Vector2D(
-			this.x ^ rhs.x,
-        	this.x ^ rhs.y
-		)
-	}
-
-	@Override
-	Vector2D leftShift(Vector2D rhs){
-		new Vector2D(
-			this.x << rhs.x,
-        	this.y << rhs.y
-		)
-	}
-	@Override
-	Vector2D rightShift(Vector2D rhs){
-		new Vector2D(
-			this.x >> rhs.x,
-			this.y >> rhs.y
-		)
-	}
-	
-	@Override
-	Vector2D bitwiseNegate(){
-		new Vector2D(
-			~this.x, 
-			~this.y
-		)
-	}
-	
 	
 	/////// comparison
 	/** note this equals does a straight and cross comparison, either X and X and Y and Y or X and Y and Y and X, because the way the compareto is handled*/
@@ -192,4 +150,5 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		// use the sqrt of one field to differentiate between the two
 		return (this.x * Math.sqrt(this.y)).hashCode()
 	}
+	
 }

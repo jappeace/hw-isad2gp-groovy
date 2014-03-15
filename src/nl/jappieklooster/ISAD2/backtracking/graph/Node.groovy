@@ -5,8 +5,8 @@ import java.awt.Point
 class Node {
 
 	List<Node> attached
-	Point position
-	Node(Point p){
+	Vector2D position
+	Node(Vector2D p){
 		position = p
 		attached = new ArrayList<Node>()
 	}
