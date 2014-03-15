@@ -10,16 +10,15 @@ import nl.jappieklooster.Log;
 
 class Artist extends AbstractArtist{
 
-	static final int nodeSize = 20
-	static final int nodeOffset = 4 
+	static final int nodeSize = 30
+	static final int nodeOffset = 8 
 	private Graph graph
 	@Override
 	Image render(){
 		super.render()
 		graph = Graph.createGraph()
 		Graphics g = image.graphics
-		int y = 0
-		int dotCorrection = (nodeOffset) /2
+		int dotCorrection = image.width / (graph.width * nodeSize)
 		g.setColor(Color.RED)
 		graph.nodes.each{
 

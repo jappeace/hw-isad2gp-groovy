@@ -1,5 +1,7 @@
 package nl.jappieklooster.ISAD2.backtracking.rendering;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,15 +17,13 @@ public class Window extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JButton btnLongestPath = new JButton("Longest path");
-		btnLongestPath.setBounds(121, 247, 149, 25);
+		btnLongestPath.setBounds(125, 338, 149, 25);
 		getContentPane().add(btnLongestPath);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(38, 38, 289, 197);
+		GraphPanel panel = new GraphPanel();
+		panel.setBounds(38, 38, 432, 288);
 		getContentPane().add(panel);
+		panel.makeGraph();
 
-		Artist a = new Artist();
-		a.setCanvas(panel);
-		a.render();
 	}
 }
