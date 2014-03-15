@@ -1,44 +1,11 @@
-package nl.jappieklooster.ISAD2.backtracking.graph
+package nl.jappieklooster.ISAD2.backtracking.solving
 
-import java.awt.Point
-import nl.jappieklooster.vector.Vector2D
+import nl.jappieklooster.graph.Graph
+class ProblemFactory {
 
-class Graph {
-
-	static{
-		
-		ArrayList.metaClass.getAt = { Double num ->
-			return delegate[(int) num];
-		}
-	}
-	List<Node> nodes
-	Vector2D size
-	
-	Graph(int width, int height){
-		nodes = new ArrayList<Node>()
-		size = new Vector2D(width, height)
-		int nodeCount = width*height
-
-		(0..(nodeCount-1)).each{
-			nodes[it] = new Node(new Vector2D(it % width, (int) (it/width)))
-		}
-	}
-	/**
-	 * gets a collumn as an arraylist, so another bracket will get the node
-	 * @param x
-	 * @return
-	 */
-	List<Node> getAt(Integer x){
-		def resultingCollumn = new ArrayList<Node>()
-		(0..(size.y-1)).each{
-			resultingCollumn.add(nodes[x + it*size.x])
-		}
-		return resultingCollumn
-	}
-
-	static Graph createGraph(){
-		Graph graph = new Graph(5,5) 
-		graph[0][0].add(graph[1][0i])
+	static Graph<Boolean> createGraph(){
+		Graph<Boolean> graph = new Graph<Boolean>(5,5) 
+		graph[0][0].add(graph[1][0])
 
         graph[0][0].add(graph[1][0]) 
         graph[1][0].add(graph[2][0]) 

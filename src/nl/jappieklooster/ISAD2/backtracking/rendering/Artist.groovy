@@ -5,19 +5,20 @@ import java.awt.Image
 import java.awt.Color;
 
 import nl.jappieklooster.ISAD2.AbstractArtist
-import nl.jappieklooster.ISAD2.backtracking.graph.Graph;
-import nl.jappieklooster.ISAD2.backtracking.graph.Node;
+import nl.jappieklooster.ISAD2.backtracking.solving.ProblemFactory
+import nl.jappieklooster.graph.Graph;
+import nl.jappieklooster.graph.Node;
 import nl.jappieklooster.vector.Vector2D
 import nl.jappieklooster.Log;
 
 class Artist extends AbstractArtist{
 
 	static final int nodeSize = 30
-	private Graph graph
+	private Graph<Boolean> graph
 	@Override
 	Image render(){
 		super.render()
-		graph = Graph.createGraph()
+		graph = ProblemFactory.createGraph()
 		Graphics g = image.graphics
 		g.setColor(Color.RED)
 		graph.nodes.each{Node node ->

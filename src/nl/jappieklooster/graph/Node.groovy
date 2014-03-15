@@ -1,17 +1,18 @@
-package nl.jappieklooster.ISAD2.backtracking.graph
+package nl.jappieklooster.graph
 
 import java.awt.Point
 import nl.jappieklooster.vector.Vector2D
 
-class Node {
+class Node<T> {
 
-	List<Node> attached
+	List<Node<T>> attached
 	Vector2D position
+	T value
 	Node(Vector2D p){
 		position = p
-		attached = new ArrayList<Node>()
+		attached = new ArrayList<Node<T>>()
 	}
-	Node[] add(Node n){
+	List<Node<T>>[] add(Node<T> n){
 		attached.add(n)
 		if(!n.attached.contains(this)){
 			n.add(this)
@@ -22,7 +23,7 @@ class Node {
 		if(!e instanceof Node){
 			return false
 		}
-		Node subject = (Node) e
+		Node<T> subject = (Node<T>) e
 		if(subject.is(this)){
 			return true
 		}
