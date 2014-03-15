@@ -11,6 +11,9 @@ class Vector2DTests {
 		assertEquals(new Vector2D(), new Vector2D())
         assertEquals(new Vector2D(4), new Vector2D(4))
         assertEquals(new Vector2D(4, -3), new Vector2D(4, -3))
+        assertEquals(new Vector2D(-3, 0.5), new Vector2D(-3, 0.5))
+        assertEquals(new Vector2D(0.6, -3), new Vector2D(0.6, -3))
+        assertEquals(new Vector2D(0.5, -3), new Vector2D(0.5, -3))
 	}
 	@Test
 	void clonetest(){
