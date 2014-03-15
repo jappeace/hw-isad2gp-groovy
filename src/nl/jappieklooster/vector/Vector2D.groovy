@@ -147,7 +147,7 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 	{
 
 		// use the sqrt of one field to differentiate between the two
-		return (this.x * Math.sqrt(this.y)).hashCode()
+		return (this.x * Math.sqrt(Math.abs(this.y))).hashCode()
 	}
 	
 }

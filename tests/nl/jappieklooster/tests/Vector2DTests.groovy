@@ -31,7 +31,7 @@ class Vector2DTests {
 	}
 	@Test
 	void power(){
-        assertEquals(new Vector2D(4, -3) ** new Vector2D(2, 5), new Vector2D(12, -243))
+        assertEquals(new Vector2D(4, -3) ** new Vector2D(2, 5), new Vector2D(16, -243))
 	}
 	@Test
 	void div(){
@@ -53,7 +53,9 @@ class Vector2DTests {
 
 	@Test
 	void negative(){
-        assertEquals(-new Vector2D(4, -3), new Vector2D(-4, 3))
+		Vector2D one = -new Vector2D(4, -3)
+		Vector2D two = new Vector2D(-4,3)
+        assertEquals(one, two)
 	}
 	
 	@Test
