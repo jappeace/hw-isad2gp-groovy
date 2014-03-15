@@ -8,12 +8,21 @@ import org.junit.Test;
 class Vector2DTests {
 	@Test
 	void equalstest(){
+		
+		// a bunch of different constructors
 		assertEquals(new Vector2D(), new Vector2D())
         assertEquals(new Vector2D(4), new Vector2D(4))
         assertEquals(new Vector2D(4, -3), new Vector2D(4, -3))
+
+		// cross problem
+		assertNotEquals(new Vector2D(4, -3), new Vector2D(-3, 4))
+		
+		// sqrt solution to cross problem failure ( can't do sqrt off neqative)
         assertEquals(new Vector2D(-3, 0.5), new Vector2D(-3, 0.5))
-        assertEquals(new Vector2D(0.6, -3), new Vector2D(0.6, -3))
         assertEquals(new Vector2D(0.5, -3), new Vector2D(0.5, -3))
+
+		// just somthing thats not equal
+		assertNotEquals(new Vector2D(0.5, -3), new Vector2D(32, 3.3))
 	}
 	@Test
 	void clonetest(){
@@ -64,5 +73,10 @@ class Vector2DTests {
 	@Test
 	void positive(){
         assertEquals(+new Vector2D(4, -3), new Vector2D(4, -3))
+	}
+	@Test
+	void compare(){
+        assertTrue(new Vector2D(4, -3) < new Vector2D(5, -2))
+        assertTrue(new Vector2D(323011, 23000) < new Vector2D(93349348, 348934839))
 	}
 }
