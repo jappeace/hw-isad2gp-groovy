@@ -6,8 +6,7 @@ class YComparator extends BaseComparator{
 
 	@Override
 	public int compare(Vector2D one, Vector2D two) {
-		double result = one.Y - two.Y
-		return finalStep(result)
+		return finalStep(one.y - two.y)
 		
 	}
 

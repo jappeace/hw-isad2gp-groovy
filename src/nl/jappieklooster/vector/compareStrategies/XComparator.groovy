@@ -6,10 +6,8 @@ class XComparator extends BaseComparator{
 
 	@Override
 	public int compare(Vector2D one, Vector2D two) {
-		double result = one.X - two.X
-		
 		// the least likley is equality
-		return finalStep(result)
+		return finalStep(one.x - two.x)
 		
 	}
 

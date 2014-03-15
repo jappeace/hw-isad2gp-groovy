@@ -11,7 +11,7 @@ import nl.jappieklooster.vector.compareStrategies.BothComparator
  */
 class Vector2D implements Cloneable, Comparable<Vector2D>{
 	static final double defaultValue = 0
-	double X, Y
+	double x, y
 	
 	/** WARNING the compare strategy is not considerd to be part of the objectState
 	* This means the indivudaul comparators and the equals methods don't take in acount which strategy is used
@@ -30,8 +30,8 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		this(both, both)
 	}
 	Vector2D(double x, double y){
-		X = x
-		Y = y
+		this.x = x
+		this.y = y
 		compareStrategy = new BothComparator()
 	}
 
@@ -44,72 +44,72 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 	@Override
 	Vector2D plus(Vector2D rhs){
 		new Vector2D(
-			this.X + rhs.X,
-			this.Y + rhs.Y
+			this.x + rhs.x,
+			this.y + rhs.y
 		)
 	}
 	@Override
 	Vector2D minus(Vector2D rhs){
 		new Vector2D(
-			this.X - rhs.X,
-			this.Y - rhs.Y
+			this.x - rhs.x,
+			this.y - rhs.y
 		)
 	}
 	@Override
 	Vector2D multiply(Vector2D rhs){
 		new Vector2D(
-			this.X * rhs.X,
-			this.Y * rhs.Y
+			this.x * rhs.x,
+			this.y * rhs.y
 		)
 	}
 	@Override
 	Vector2D power(Vector2D rhs){
 		new Vector2D(
-			this.X ** rhs.X,
-			this.Y ** rhs.Y
+			this.x ** rhs.x,
+			this.y ** rhs.y
 		)
 	}
 	@Override
 	Vector2D div(Vector2D rhs){
 		new Vector2D(
-			this.X / rhs.X,
-			this.Y / rhs.Y
+			this.x / rhs.x,
+			this.y / rhs.y
 		)
 	}
 	@Override
 	Vector2D mod(Vector2D rhs){
 		new Vector2D(
-			this.X % rhs.X,
-			this.Y % rhs.Y
+			this.x % rhs.x,
+			this.y % rhs.y
 		)
 	}
 
 	@Override
 	Vector2D next(){
-		this.X++
-		this.Y++
+		this.x++
+		this.y++
 		return this
 	}
 	@Override
 	Vector2D previous(){
-		this.X--
-		this.Y--
+		this.x--
+		this.y--
 		return this
 	}
 
 	@Override
 	Vector2D negative(){
 		new Vector2D(
-			-this.X, 
-			-this.Y
+			-this.x, 
+			-this.y
 		)
 	}
 	
 	@Override
 	Vector2D positive(){
 		new Vector2D(
-			+this.X, 
-			+this.Y
+			+this.x, 
+			+this.y
 		)
 	}
 
@@ -117,45 +117,45 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 	@Override
 	Vector2D or(Vector2D rhs){
 		new Vector2D(
-			this.X | rhs.X,
-			this.Y | rhs.Y
+			this.x | rhs.x,
+			this.y | rhs.y
 		)
 	}
 	@Override
 	Vector2D and(Vector2D rhs){
 		new Vector2D(
-			this.X & rhs.X,
-			this.Y & rhs.Y
+			this.x & rhs.x,
+			this.y & rhs.y
 		)
 	}
 	@Override
 	Vector2D xor(Vector2D rhs){
 		new Vector2D(
-			this.X ^ rhs.X,
-        	this.X ^ rhs.Y
+			this.x ^ rhs.x,
+        	this.x ^ rhs.y
 		)
 	}
 
 	@Override
 	Vector2D leftShift(Vector2D rhs){
 		new Vector2D(
-			this.X << rhs.X,
-        	this.Y << rhs.Y
+			this.x << rhs.x,
+        	this.y << rhs.y
 		)
 	}
 	@Override
 	Vector2D rightShift(Vector2D rhs){
 		new Vector2D(
-			this.X >> rhs.X,
-			this.Y >> rhs.Y
+			this.x >> rhs.x,
+			this.y >> rhs.y
 		)
 	}
 	
 	@Override
 	Vector2D bitwiseNegate(){
 		new Vector2D(
-			~this.X, 
-			~this.Y
+			~this.x, 
+			~this.y
 		)
 	}
 	
@@ -190,6 +190,6 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 	{
 
 		// use the sqrt of one field to differentiate between the two
-		return (this.X * Math.sqrt(this.Y)).hashCode()
+		return (this.x * Math.sqrt(this.y)).hashCode()
 	}
 }
