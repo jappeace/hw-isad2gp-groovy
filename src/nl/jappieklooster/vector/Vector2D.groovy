@@ -117,7 +117,6 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 			+this.y
 		)
 	}
-	
 	/////// comparison
 	/** note this equals does a straight and cross comparison, either X and X and Y and Y or X and Y and Y and X, because the way the compareto is handled*/
 	@Override

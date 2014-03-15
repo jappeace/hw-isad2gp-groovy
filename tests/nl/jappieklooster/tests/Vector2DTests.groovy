@@ -60,32 +60,4 @@ class Vector2DTests {
 	void positive(){
         assertEquals(+new Vector2D(4, -3), new Vector2D(4, -3))
 	}
-
-	//////// bitwise magick
-	@Test
-	void or(){
-        assertEquals(new Vector2D(4, -3) | new Vector2D(2, 5), new Vector2D(0, -3))
-	}
-	@Test
-	void and(){
-        assertEquals(new Vector2D(4, -3) & new Vector2D(2, 5), new Vector2D(0, -3))
-	}
-	@Test
-	void xor(){
-        assertEquals(new Vector2D(4, -3) ^ new Vector2D(2, 5), new Vector2D(0, -3))
-	}
-
-	@Test
-	void leftShift(){
-        assertEquals(new Vector2D(4, -3) << new Vector2D(2, 5), new Vector2D(0, -3))
-	}
-	@Test
-	void rightShift(){
-        assertEquals(new Vector2D(4, -3) >> new Vector2D(2, 5), new Vector2D(0, -3))
-	}
-	
-	@Test
-	void bitwiseNegate(){
-        assertEquals(~new Vector2D(4, -3), new Vector2D(0, -3))
-	}
 }
