@@ -1,12 +1,16 @@
 package nl.jappieklooster.graph
 
 import java.awt.Point
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import nl.jappieklooster.vector.Vector2D
 
-class Graph<T> {
+class GridGraph<T> {
 
 	static{
-		
 		ArrayList.metaClass.getAt = { Double num ->
 			return delegate[(int) num];
 		}
@@ -14,7 +18,7 @@ class Graph<T> {
 	List<Node<T>> nodes
 	Vector2D size
 	
-	Graph(int width, int height){
+	GridGraph(int width, int height){
 		nodes = new ArrayList<Node<T>>()
 		size = new Vector2D(width, height)
 		int nodeCount = width*height
@@ -35,5 +39,11 @@ class Graph<T> {
 		}
 		return resultingCollumn
 	}
-
+	
+	@Override
+	void each(Closure callback){
+		nodes.each{
+			callback(it)
+		}
+	}
 }

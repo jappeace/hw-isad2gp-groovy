@@ -1,10 +1,10 @@
 package nl.jappieklooster.ISAD2.backtracking.solving
 
-import nl.jappieklooster.graph.Graph
+import nl.jappieklooster.graph.GridGraph
 class ProblemFactory {
 
-	static Graph<Boolean> createGraph(){
-		Graph<Boolean> graph = new Graph<Boolean>(5,5) 
+	static GridGraph<Boolean> createGraph(){
+		GridGraph<Boolean> graph = new GridGraph<Boolean>(5,5) 
 		graph[0][0].add(graph[1][0])
 
         graph[0][0].add(graph[1][0]) 

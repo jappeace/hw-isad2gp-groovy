@@ -6,7 +6,7 @@ import java.awt.Color;
 
 import nl.jappieklooster.ISAD2.AbstractArtist
 import nl.jappieklooster.ISAD2.backtracking.solving.ProblemFactory
-import nl.jappieklooster.graph.Graph;
+import nl.jappieklooster.graph.GridGraph;
 import nl.jappieklooster.graph.Node;
 import nl.jappieklooster.vector.Vector2D
 import nl.jappieklooster.Log;
@@ -14,7 +14,7 @@ import nl.jappieklooster.Log;
 class Artist extends AbstractArtist{
 
 	static final int nodeSize = 30
-	private Graph<Boolean> graph
+	private GridGraph<Boolean> graph
 	@Override
 	Image render(){
 		super.render()

@@ -1,6 +1,6 @@
 package nl.jappieklooster.ISAD2.backtracking.solving
-import nl.jappieklooster.graph.Graph
+import nl.jappieklooster.graph.GridGraph
 
 class SolutionFactory {
-	Graph<Boolean> problem
+	GridGraph<Boolean> problem
 }
