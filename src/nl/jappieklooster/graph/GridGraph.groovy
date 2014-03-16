@@ -12,7 +12,7 @@ class GridGraph<T> {
 
 	static{
 		ArrayList.metaClass.getAt = { Double num ->
-			return delegate[(int) num];
+			return delegate[(int) num.round()];
 		}
 	}
 	List<Node<T>> nodes
@@ -38,6 +38,10 @@ class GridGraph<T> {
 			resultingCollumn.add(nodes[x + it*size.x])
 		}
 		return resultingCollumn
+	}
+	Node<T> getAt(Vector2D where){
+		
+		return getAt((int) where.x.round())[where.y]
 	}
 	
 	@Override

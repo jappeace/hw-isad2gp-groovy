@@ -5,8 +5,6 @@ class ProblemFactory {
 
 	static GridGraph<Boolean> createGraph(){
 		GridGraph<Boolean> graph = new GridGraph<Boolean>(5,5) 
-		graph[0][0].add(graph[1][0])
-
         graph[0][0].add(graph[1][0]) 
         graph[1][0].add(graph[2][0]) 
         graph[2][0].add(graph[3][0]) 
