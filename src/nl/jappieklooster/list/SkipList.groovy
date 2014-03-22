@@ -5,14 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-class SkipList<Data extends Comparable<Data>> implements List<Data>{
+class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 
 	int size = 0;
 	
 	SkipNode<Data> head
+	Random random
 	
 	SkipList(){
 		head = new SkipNode<Data>()
+		random = new Random()
 	}
 	
 	@Override
@@ -33,54 +35,62 @@ class SkipList<Data extends Comparable<Data>> implements List<Data>{
 		}
 		Data d = (Data) o
 		
-		return search(head, d, head.next.size()) != null;
+		return search(head.next[head.getTop()], d, head.getTop()) != null;
 	}
 	
+	/** searches for the given data trough a comperator or at least the closest value to it*/
 	private SkipNode<Data> search(SkipNode<Data> current, Data target, int depth){
-		SkipNode<Data> result = null
 		if(target == current){
 			return current
 		}
-		if(current < target){
-			result = search(current.next[depth], target, depth)
+		if(target < current){
+			return current.previous
 		}
-		
+		if(current.nextList[depth] != null){
+			return search(current.nextList[depth], target, depth)
+		}
 		
 		// target is smaller then current so we need to go lower
 		depth--;
 		if(depth < 0){
-			return result
+			// if we have result, return otherwise return current, which is closest
+			return current
 		}
-		if(current > target){
-			result = search(current.next[depth], target, depth)
-		}
-		return result
-		
-
+		return search(current, target, depth)
 	}
 
 
 	@Override
 	Iterator<Data> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SkipListIterator<>(head, random);
 	}
 
 	@Override
 	Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] result = new Object[size]
+		
+		this.eachWithIndex{ SkipNode<Data> d, int i ->
+			result[i] = (Object) d.data
+		}
+		return result;
 	}
 
 	@Override
 	<T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		T[] result;
+		if(a.size() > this.size()){
+			result = (T[])Array.newInstance(a[0].class, this.size());
+		}
+		toArray().each{
+            result = (T) it;
+        }
+		return result;
 	}
 
 	@Override
 	boolean add(Data e) {
-		// TODO Auto-generated method stub
+		size++
+		SkipNode<Data> neighbour = search(head, e, head.getTop())
 		return false;
 	}
 
@@ -125,59 +135,4 @@ class SkipList<Data extends Comparable<Data>> implements List<Data>{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	Data get(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	Data set(int index, Data element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	void add(int index, Data element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	Data remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	ListIterator<Data> listIterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	ListIterator<Data> listIterator(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	List<Data> subList(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
