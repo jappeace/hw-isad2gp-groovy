@@ -9,10 +9,10 @@ class SkipLists {
 
 	SkipList<Integer> testList;
 	
-	void resetTestList(){
+	private void resetTestList(){
 		
-		testList = new SkipList<Integer>();
-		testList.add(4)
+		testList = new SkipList<Integer>()
+		testList.add((Integer)4)
 		testList.add(9)
 		testList.add(1)
 		testList.add(3)
@@ -35,8 +35,32 @@ class SkipLists {
 		
 	}
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void iterationOrder() {
+        List<Integer> expectedOrder = new ArrayList<>()
+		expectedOrder.add(-40)
+		expectedOrder.add(-34)
+		expectedOrder.add(-24)
+		expectedOrder.add(-14)
+		expectedOrder.add(-4)
+		expectedOrder.add(1)
+		expectedOrder.add(1)
+		expectedOrder.add(3)
+		expectedOrder.add(3)
+		expectedOrder.add(3)
+		expectedOrder.add(4)
+		expectedOrder.add(4)
+		expectedOrder.add(9)
+		expectedOrder.add(10)
+		expectedOrder.add(12)
+		expectedOrder.add(30)
+		expectedOrder.add(39)
+		expectedOrder.add(89)
+		expectedOrder.add(324)
+		expectedOrder.add(90932)
+		resetTestList();
+		testList.eachWithIndex{ Integer value, int index ->
+            assertEquals(expectedOrder[index], value)
+		}
 	}
 
 }

@@ -26,6 +26,9 @@ class SkipNode<Data extends Comparable<Data>> implements Comparable<Data> {
 	SkipNode<Data> getNext(){
 		return nextList[getTop()]
 	}
+	void setNext(SkipNode<Data> to){
+		nextList.add(to)
+	}
 	SkipNode<Data> getNext(int depth){
 		if(depth >= nextList.size()){
 			return nextList[0]
@@ -33,6 +36,21 @@ class SkipNode<Data extends Comparable<Data>> implements Comparable<Data> {
 		return nextList[nextList.size() - depth -1]
 	}
 	int getTop(){
-		return nextList.size() - 1
+		return nextList.size()  == 0 ? 0 : nextList.size()- 1
+	}
+	void increaseLevel(SkipNode<Data> left, SkipNode<Data> right){
+		left.nextList[getTop()] = this
+		this.nextList[getTop()] = right	
+	}
+	
+	/**
+	 * destroys all references to this skipnode so it would no longer be in a skiplist
+	 * manual pointers will NOT be deleted
+	 */
+	void delete(){
+		this.previous.nextList[0] = this.nextList[0]
+		List<SkipNode<Data>> neighbourList = this.nextList[0].nextList
+		if(this.nextList.size() > neighbourList.size()){
+		}
 	}
 }

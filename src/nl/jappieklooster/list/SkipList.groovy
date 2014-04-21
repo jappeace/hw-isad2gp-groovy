@@ -7,14 +7,14 @@ import java.util.ListIterator;
 
 class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 
-	int size = 0;
+	int size;
 	
 	SkipNode<Data> head
 	Random random
 	
 	SkipList(){
-		head = new SkipNode<Data>()
 		random = new Random()
+		clear();
 	}
 	
 	@Override
@@ -39,24 +39,40 @@ class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 	}
 	
 	/** searches for the given data trough a comperator or at least the closest value to it*/
-	private SkipNode<Data> search(SkipNode<Data> current, Data target, int depth){
-		if(target == current){
+	private SkipNode<Data> search(SkipNode<Data> current, Data target, int height, Closure onDescent = null){
+		if(current == target){
 			return current
 		}
-		if(target < current){
+		if(current > target){
 			return current.previous
 		}
-		if(current.nextList[depth] != null){
-			return search(current.nextList[depth], target, depth)
+		if(current.nextList[height] != null){
+			return search(current.nextList[height], target, height, onDescent)
 		}
 		
 		// target is smaller then current so we need to go lower
-		depth--;
-		if(depth < 0){
+		height--;
+		if(height < 0){
 			// if we have result, return otherwise return current, which is closest
 			return current
 		}
-		return search(current, target, depth)
+		if(onDescent){
+			// allow extra code the be executed when descending a level
+			// like putting stuff on a stack
+			onDescent(current)
+		}
+		return search(current, target, height, onDescent)
+	}
+	// searches for a specified height by trying to go up otherwise go right
+	// returns null if failed
+	private SkipNode<Data> searchLevel(SkipNode<Data> current, int height){
+		if(current == null){
+			return current
+		}
+		if(current.getTop() > height){
+			return current.nextList[height]
+		}
+		return current.next
 	}
 
 
@@ -88,10 +104,40 @@ class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 	}
 
 	@Override
-	boolean add(Data e) {
+	boolean add(Data element) {
 		size++
-		SkipNode<Data> neighbour = search(head, e, head.getTop())
-		return false;
+		if(head.next == null){
+			head.next = new SkipNode<Data>(element)
+			head.next.previous = head
+			return true
+		}
+		Stack<SkipNode<Data>> prevStack = new Stack<SkipNode<Data>>()
+		SkipNode<Data> neighbour = search(
+			head.next,
+			element, 
+			head.next.getTop(),
+			{ SkipNode<Data> node ->
+				prevStack.push(node)
+            }
+		);
+		// add the data to a new linklist like node
+		SkipNode<Data> toAdd = new SkipNode<Data>(element)
+		toAdd.previous = neighbour
+		toAdd.increaseLevel(neighbour, searchLevel(neighbour.nextList[0], 0))
+		
+		// do the coinflip, to determin height
+		// should break eventualy
+		for(int i = 1;random.nextBoolean(); i++){
+			if(prevStack.size() == 0){
+				// make sure the head has a reference to it
+				head.next.increaseLevel(head, null)
+				prevStack.push(head.next)
+			}
+			toAdd.increaseLevel(prevStack.pop(), searchLevel(neighbour.nextList[0], i))
+			
+		}
+
+		return true;
 	}
 
 	@Override
@@ -132,7 +178,7 @@ class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 
 	@Override
 	void clear() {
-		// TODO Auto-generated method stub
-		
+		size = 0
+		head = new SkipNode<Data>()
 	}
 }
