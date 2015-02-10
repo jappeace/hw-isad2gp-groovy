@@ -44,7 +44,6 @@ class GridGraph<T> {
 		return getAt((int) where.x.round())[where.y]
 	}
 	
-	@Override
 	void each(Closure callback){
 		nodes.each{
 			callback(it)

@@ -46,42 +46,37 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		return "(" + x + ", " + y + ")"
 	}
 	///////// aritmatics
-	@Override
 	Vector2D plus(Vector2D rhs){
 		new Vector2D(
 			this.x + rhs.x,
 			this.y + rhs.y
 		)
 	}
-	@Override
 	Vector2D minus(Vector2D rhs){
 		new Vector2D(
 			this.x - rhs.x,
 			this.y - rhs.y
 		)
 	}
-	@Override
+	
 	Vector2D multiply(Vector2D rhs){
 		new Vector2D(
 			this.x * rhs.x,
 			this.y * rhs.y
 		)
 	}
-	@Override
 	Vector2D power(Vector2D rhs){
 		new Vector2D(
 			this.x ** rhs.x,
 			this.y ** rhs.y
 		)
 	}
-	@Override
 	Vector2D div(Vector2D rhs){
 		new Vector2D(
 			this.x / rhs.x,
 			this.y / rhs.y
 		)
 	}
-	@Override
 	Vector2D mod(Vector2D rhs){
 		new Vector2D(
 			this.x % rhs.x,
@@ -89,20 +84,17 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		)
 	}
 
-	@Override
 	Vector2D next(){
 		this.x++
 		this.y++
 		return this
 	}
-	@Override
 	Vector2D previous(){
 		this.x--
 		this.y--
 		return this
 	}
 
-	@Override
 	Vector2D negative(){
 		new Vector2D(
 			-this.x, 
@@ -110,7 +102,6 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		)
 	}
 	
-	@Override
 	Vector2D positive(){
 		new Vector2D(
 			+this.x, 
@@ -137,7 +128,6 @@ class Vector2D implements Cloneable, Comparable<Vector2D>{
 		return compareStrategy.compare(this, to);
 	}
 
-	@Override
 	boolean isCase(Vector2D lhs){
 		return lhs == this
 	}

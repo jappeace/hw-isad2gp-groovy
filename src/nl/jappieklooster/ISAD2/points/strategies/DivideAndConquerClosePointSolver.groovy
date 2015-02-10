@@ -45,14 +45,14 @@ class DivideAndConquerPointSolver implements ClosePointSolver{
 			double strip = Math.sqrt((shortest.one.x - shortest.two.x) ** 2)
 			double width = points[points.length - 1].x
 			double startX = width / 2 - strip / 2
-			double endX   = width / 2 - strip / 2
+			double endX   = width / 2 + strip / 2
 			// find the closest points in the strip
 			stripPoints = points.find{ startX >= it.x && endX <= it.x}
 		}else{
             double strip = Math.sqrt((shortest.one.y - shortest.two.y) ** 2)
 			double height = points[points.length - 1].y
 			double startY = height / 2 - strip / 2
-			double endY   = height / 2 - strip / 2
+			double endY   = height / 2 + strip / 2
 			// find the closest points in the strip
 			stripPoints = points.find{ startY >= it.y && endY <= it.y}
 		}

@@ -158,7 +158,6 @@ class SkipList<Data extends Comparable<Data>> implements Collection<Data>{
 		return false;
 	}
 
-	@Override
 	boolean addAll(int index, Collection<? extends Data> c) {
 		// TODO Auto-generated method stub
 		return false;
