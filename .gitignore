@@ -1,5 +1,5 @@
 #java I think
-build*
+build/*
 dist/
 manifest.mf
 
