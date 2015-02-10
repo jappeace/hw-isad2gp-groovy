@@ -1,10 +1,7 @@
 #java I think
 build*
-dist
+dist/
 manifest.mf
-
-#netbeans
-nbproject
 
 # vim
 *.swp
@@ -14,7 +11,7 @@ nbproject
 .project
 .classpath
 .settings/*
-bin
+bin/
 
 # archives...
 *.zip
